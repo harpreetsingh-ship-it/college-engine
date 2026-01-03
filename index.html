@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>College Pathways Decision Engine (Prototype)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 0; background: #fafafa; }
+    header { background: #111; color: #fff; padding: 16px 20px; }
+    header h1 { margin: 0; font-size: 18px; }
+    header p { margin: 6px 0 0; opacity: 0.85; font-size: 13px; line-height: 1.35; }
+    main { max-width: 980px; margin: 0 auto; padding: 18px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .card { background: #fff; border: 1px solid #e6e6e6; border-radius: 10px; padding: 14px; }
+    .card h2 { margin: 0 0 10px; font-size: 16px; }
+    label { display: block; font-size: 13px; margin: 10px 0 6px; color: #222; }
+    input[type="number"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-size: 14px; }
+    textarea { min-height: 70px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btnbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    button { padding: 10px 12px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; }
+    button.primary { background: #111; color: #fff; border-color: #111; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid #ddd; font-size: 12px; background: #fff; }
+    .muted { color: #666; font-size: 13px; }
+    .helper { margin-top: 6px; color: #666; font-size: 12px; line-height: 1.35; }
+    .out h3 { margin: 12px 0 8px; font-size: 14px; }
+    .out ul { margin: 0; padding-left: 18px; }
+    .out li { margin: 6px 0; }
+    .divider { height: 1px; background: #eee; margin: 12px 0; }
+    .hidden { display: none; }
+    .feedback { margin-top: 12px; }
+    .small { font-size: 12px; color: #666; }
+    footer { padding: 18px; text-align: center; color: #777; font-size: 12px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    /* Tooltip icon (kept for fallback; not used directly once we switch to tipwrap) */
+    .tip {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 12px;
+      line-height: 1;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 1px 6px;
+      color: #444;
+      background: #fff;
+      cursor: help;
+      user-select: none;
+    }
+
+    /* Mobile-friendly tooltip panel */
+    .tipwrap { position: relative; display: inline-block; }
+    .tipcard {
+      display: none;
+      position: absolute;
+      z-index: 50;
+      top: 24px;
+      right: 0;
+      width: min(320px, 85vw);
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      color: #222;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .tipwrap:focus-within .tipcard { display: block; }
+    .tipbtn {
+      all: unset;
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 12px;
+      line-height: 1;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 1px 6px;
+      color: #444;
+      background: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .tipbtn:focus { outline: 2px solid rgba(17,17,17,0.25); outline-offset: 2px; }
+
+    /* Small callout block */
+    .callout {
+      background: #f6f6f6;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 13px;
+      color: #333;
+      margin: 10px 0 12px;
+      line-height: 1.35;
+    }
+    .callout strong { font-weight: 700; }
+
+    /* UC explainer */
+    .details__summary { cursor: pointer; font-weight: 600; }
+    .details__body { margin-top: 12px; }
+    .table-wrap { overflow-x: auto; margin-top: 10px; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { border: 1px solid rgba(0,0,0,0.15); padding: 8px; vertical-align: top; }
+    .muted-note { opacity: 0.75; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>College Pathways Decision Engine (Prototype)</h1>
+    <p>
+      Deterministic rules. No accounts. No predictions. This tool helps families plan realistically based on what can still change.
+    </p>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section class="card">
+        <h2>Inputs</h2>
+
+        <div class="callout">
+          <strong>How to read this:</strong> GPA is the gate. Activities and essays can strengthen an application <em>after</em> GPA is in range — they rarely “rescue” a locked pathway.
+          <div class="helper" style="margin-top:6px;">Phone tip: tap the ⓘ bubbles to open explanations.</div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="grade_level">
+              Current grade level
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">This drives what is still changeable. Senior year (especially Oct+) has fewer levers.</span>
+              </span>
+            </label>
+            <select id="grade_level">
+              <option value="9">9th</option>
+              <option value="10">10th</option>
+              <option value="11">11th</option>
+              <option value="12">12th</option>
+            </select>
+          </div>
+
+          <div id="month_bucket_wrap" class="hidden">
+            <label for="grade_month_bucket">
+              If 12th grade: where are you in the school year?
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">After October, most admissions outcomes are already driven by earlier grades. This tool shifts from “build signal” to “avoid mistakes.”</span>
+              </span>
+            </label>
+            <select id="grade_month_bucket">
+              <option value="pre_october">Before October</option>
+              <option value="october_or_later">October or later</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="gpa_unweighted">
+              Unweighted GPA
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">Use the GPA from the transcript (not weighted). This is the main structural gate in the engine.</span>
+              </span>
+            </label>
+            <input id="gpa_unweighted" type="number" min="2.0" max="4.0" step="0.01" value="3.50" />
+            <div class="helper">Example: 3.48 (unweighted). If you only know weighted GPA, approximate and refine later.</div>
+          </div>
+
+          <div>
+            <label for="gpa_trend">
+              GPA direction (last 2 semesters)
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">Improving helps. Flat/declining means fewer realistic upgrades without changing strategy.</span>
+              </span>
+            </label>
+            <select id="gpa_trend">
+              <option value="improving">Improving</option>
+              <option value="flat" selected>Flat</option>
+              <option value="declining">Declining</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="grade_concentration">
+          Where are the lower grades mostly happening?
+          <span class="tipwrap">
+            <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+            <span class="tipcard">This helps the engine detect patterns (e.g., math/science weakness vs broadly spread).</span>
+          </span>
+        </label>
+        <select id="grade_concentration">
+          <option value="mostly_as">Mostly As (few Bs/Cs)</option>
+          <option value="evenly_spread" selected>Spread across subjects</option>
+          <option value="math_science">Mostly Math/Science</option>
+          <option value="humanities_social_science">Mostly English/History/Social Science</option>
+          <option value="electives">Mostly electives / non-core classes</option>
+        </select>
+        <div class="helper">Pick the closest match. Don’t overthink it.</div>
+
+        <label for="major_bucket">
+          Likely major / direction (best guess)
+          <span class="tipwrap">
+            <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+            <span class="tipcard">This is not a commitment. It helps the tool distinguish “impacted” majors (harder admission) from less impacted ones.</span>
+          </span>
+        </label>
+        <select id="major_bucket">
+          <option value="cs_engineering">Computer Science / Engineering</option>
+          <option value="business_econ">Business / Economics</option>
+          <option value="health_life_science">Health / Life Science (bio, pre-med)</option>
+          <option value="humanities_social_science" selected>Humanities / Social Science (history, poli sci, psych)</option>
+          <option value="arts_architecture">Arts / Architecture</option>
+          <option value="undecided">Undecided</option>
+        </select>
+
+        <label for="systems_considered">
+          Which college systems are you seriously considering?
+          <span class="tipwrap">
+            <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+            <span class="tipcard">This is about realistic planning, not aspiration. Select what you’re willing to apply to.</span>
+          </span>
+        </label>
+        <select id="systems_considered" multiple size="5">
+          <option value="uc" selected>University of California (UC)</option>
+          <option value="csu" selected>California State University (CSU)</option>
+          <option value="private_oos">Private / Out-of-state</option>
+          <option value="cc_transfer">Community college → transfer</option>
+          <option value="undecided">Not sure yet</option>
+        </select>
+        <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).</div>
+
+        <div class="divider"></div>
+
+        <h2 style="margin-top:0;">What you’re realistically willing to do</h2>
+        <div class="muted">These do not change “truth.” They change what actions are feasible.</div>
+
+        <div class="row">
+          <div>
+            <label for="willing_prioritize_gpa_over_rigor">
+              Prefer protecting GPA over taking harder classes?
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">Some schools push AP/Honors broadly. This tool defaults to protecting GPA when the risk is high.</span>
+              </span>
+            </label>
+            <select id="willing_prioritize_gpa_over_rigor">
+              <option value="true" selected>Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div class="helper">Example: choosing regular vs AP/Honors if AP would likely lead to Bs/Cs.</div>
+          </div>
+
+          <div>
+            <label for="willing_summer_academics">
+              Willing to take summer classes?
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">Summer academics can help in certain GPA bands if you can realistically earn As in aligned classes.</span>
+              </span>
+            </label>
+            <select id="willing_summer_academics">
+              <option value="true" selected>Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div class="helper">This is not about “more work.” It’s about high-ROI work.</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="willing_reduce_ecs">
+              Willing to prioritize academics over activities?
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">Activities matter most when GPA is already strong. If time sinks are pulling GPA down, academics usually win.</span>
+              </span>
+            </label>
+            <select id="willing_reduce_ecs">
+              <option value="true">Yes</option>
+              <option value="false" selected>No</option>
+            </select>
+            <div class="helper">This does NOT mean “quit everything.” It means “cut time sinks if needed.”</div>
+          </div>
+
+          <div>
+            <label for="open_to_cc_pathways">
+              Open to community college pathways (dual enrollment or transfer)?
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">This does not force transfer. It allows the engine to surface CC-based levers when they are the most reliable option.</span>
+              </span>
+            </label>
+            <select id="open_to_cc_pathways">
+              <option value="true" selected>Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div class="helper">If you select “No,” the engine will still tell you what is structurally true—but won’t push actions you refuse.</div>
+          </div>
+        </div>
+
+        <label for="summer_travel_weeks">
+          Summer travel time (weeks)
+          <span class="tipwrap">
+            <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+            <span class="tipcard">If you’ll be traveling 3+ weeks, summer classes become harder to execute even if online.</span>
+          </span>
+        </label>
+        <input id="summer_travel_weeks" type="number" min="0" max="8" step="1" value="0" />
+        <div class="helper">Optional. Use 0 if unknown.</div>
+
+        <div class="divider"></div>
+
+        <h2 style="margin-top:0;">Optional details (only if you want UC campus nuance)</h2>
+        <div class="muted">These are optional and only refine campus-level messaging. Leave blank if unsure.</div>
+
+        <div class="row">
+          <div>
+            <label for="campus_targets_uc">
+              UC campuses you’re considering (optional)
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">Selecting campuses enables the Access vs Floor-Guarded logic and campus notes.</span>
+              </span>
+            </label>
+            <select id="campus_targets_uc" multiple size="5">
+              <option value="UCB">UC Berkeley (UCB)</option>
+              <option value="UCLA">UCLA</option>
+              <option value="UCSD">UC San Diego (UCSD)</option>
+              <option value="UCI">UC Irvine (UCI)</option>
+              <option value="UCD">UC Davis (UCD)</option>
+              <option value="UCSB">UC Santa Barbara (UCSB)</option>
+              <option value="UCSC">UC Santa Cruz (UCSC)</option>
+              <option value="UCR">UC Riverside (UCR)</option>
+              <option value="UCM">UC Merced (UCM)</option>
+            </select>
+            <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).</div>
+          </div>
+
+          <div>
+            <label for="academic_anomaly_timing">
+              Retaken a class due to a D/F? If yes, when?
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">This is about whether a low grade happened early (more recoverable) or late (higher risk). Leave blank if not sure.</span>
+              </span>
+            </label>
+            <select id="academic_anomaly_timing">
+              <option value="">(not provided)</option>
+              <option value="none">No</option>
+              <option value="early_10th_or_before">Yes — early (10th grade or before)</option>
+              <option value="late_11th">Yes — late (11th grade)</option>
+            </select>
+
+            <label for="ec_leadership_recognition">
+              Activities: leadership / awards (optional)
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">This is not about “more clubs.” It’s about whether activities create real signal: leadership, awards, or both.</span>
+              </span>
+            </label>
+            <select id="ec_leadership_recognition">
+              <option value="">(not provided)</option>
+              <option value="none">None / minimal</option>
+              <option value="leadership_only">Leadership roles (no major awards)</option>
+              <option value="awards_only">Awards/recognition (no leadership role)</option>
+              <option value="leadership_and_awards">Both leadership + awards</option>
+            </select>
+
+            <label for="senior_course_signals">
+              Senior-year “signals” (optional)
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">These can amplify an already-viable path. They do not rescue a path that’s structurally locked.</span>
+              </span>
+            </label>
+            <select id="senior_course_signals" multiple size="3">
+              <option value="we_the_people">We the People</option>
+              <option value="capstone_research">Capstone research / thesis-style course</option>
+              <option value="advanced_civic_program">Advanced civic program</option>
+            </select>
+            <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).</div>
+          </div>
+        </div>
+
+        <div class="btnbar">
+          <button class="primary" id="run_btn">Run</button>
+          <button id="reset_btn">Reset</button>
+        </div>
+
+        <div class="small" id="version_line"></div>
+      </section>
+
+      <section class="card out">
+        <h2>Output</h2>
+        <div class="muted">Results appear here. This prototype intentionally avoids probability language.</div>
+
+        <div class="divider"></div>
+
+        <div>
+          <span class="pill" id="pill_gpa_band">GPA band: —</span>
+          <span class="pill" id="pill_time_window">Time window: —</span>
+        </div>
+
+        <h3>What is locked</h3>
+        <ul id="locked_list"></ul>
+
+        <h3>What remains viable</h3>
+        <ul id="viable_list"></ul>
+
+        <h3>High-ROI actions</h3>
+        <ul id="actions_list"></ul>
+
+        <h3>Stop list</h3>
+        <ul id="stop_list"></ul>
+
+        <h3>What success looks like from here</h3>
+        <div id="success_box" class="muted"></div>
+
+        <div class="divider"></div>
+
+        <!-- UC Explainer (Collapsible) -->
+        <div class="card" id="uc_explainer_wrap" style="display:none;">
+          <details id="uc_explainer" class="details">
+            <summary class="details__summary">
+              How to read UC results: Access UC vs Floor-Guarded UC
+            </summary>
+
+            <div class="details__body">
+              <p>
+                All UC campuses belong to the same system—but they do not admit students the same way.
+                This tool uses two terms to explain the difference so families can plan realistically.
+              </p>
+
+              <h4>Access UC (Example: UC Merced)</h4>
+              <p>
+                An <strong>Access UC</strong> is a campus where your student’s GPA band is commonly represented among admitted students.
+                Admission does not depend heavily on major choice at the first-year level. Strategy is clean execution: meet UC requirements,
+                submit a strong application, and avoid unnecessary academic risk.
+              </p>
+
+              <h4>Floor-Guarded UC (Examples: UCR, UCSC, UCSD, UCLA)</h4>
+              <p>
+                A <strong>Floor-Guarded UC</strong> applies strong GPA thresholds (even if they aren’t published). Applicants below that floor
+                are admitted in small numbers regardless of activities or essays. Treat these as constrained or long-shot options if GPA is below
+                the historical range, and prioritize reliable pathways alongside them.
+              </p>
+
+              <p class="muted muted-note">
+                These labels describe <em>campus behavior</em>, not student ability. They do not guarantee outcomes.
+              </p>
+
+              <h4>UC-by-UC Summary</h4>
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>UC Campus</th>
+                      <th>Access Type</th>
+                      <th>GPA Reality (First-Year)</th>
+                      <th>How to Treat It Strategically</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>UC Merced (UCM)</strong></td>
+                      <td><strong>Access UC</strong></td>
+                      <td>Large share of admits between <strong>3.0–3.49</strong> across majors</td>
+                      <td>Direct UC option if requirements are met</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UC Riverside (UCR)</strong></td>
+                      <td>Floor-Guarded</td>
+                      <td>Majority of admits above ~<strong>3.5</strong></td>
+                      <td>Long-shot below ~3.5</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UC Santa Cruz (UCSC)</strong></td>
+                      <td>Floor-Guarded</td>
+                      <td>Very few admits below ~<strong>3.5</strong></td>
+                      <td>Long-shot below ~3.5</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UC Davis (UCD)</strong></td>
+                      <td>Floor-Guarded</td>
+                      <td>Strong clustering above ~<strong>3.7</strong></td>
+                      <td>Reach unless GPA is high</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UC Irvine (UCI)</strong></td>
+                      <td>Floor-Guarded</td>
+                      <td>Competitive across majors</td>
+                      <td>Reach below top GPA bands</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UC San Diego (UCSD)</strong></td>
+                      <td>Floor-Guarded</td>
+                      <td>High GPA floor across majors</td>
+                      <td>Reach for most applicants</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UCLA</strong></td>
+                      <td>Floor-Guarded</td>
+                      <td>Extremely tight GPA clustering</td>
+                      <td>Reach even for top students</td>
+                    </tr>
+                    <tr>
+                      <td><strong>UC Berkeley (UCB)</strong></td>
+                      <td>Floor-Guarded (Spike-Sensitive)</td>
+                      <td>GPA floor + strong spikes</td>
+                      <td>Rare exception cases only</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Notes</h3>
+        <ul id="notes_list"></ul>
+
+        <div class="divider"></div>
+
+        <h3>Feedback</h3>
+        <div class="muted">This helps tighten rules and language. Do not include names or sensitive details.</div>
+
+        <div class="feedback btnbar">
+          <button id="fb_yes">✅ Matched reality</button>
+          <button id="fb_partial">⚠️ Partially off</button>
+          <button id="fb_no">❌ Not accurate</button>
+        </div>
+
+        <div id="fb_detail" class="hidden">
+          <label for="fb_text">What felt off or missing? (optional)</label>
+          <textarea id="fb_text" placeholder="Optional. Avoid names and identifying details."></textarea>
+          <div class="btnbar">
+            <button class="primary" id="fb_submit">Send feedback</button>
+            <button id="fb_cancel">Cancel</button>
+          </div>
+          <div class="small" id="fb_status"></div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    Prototype. Not legal/financial advice. No guarantees. Use as planning support.
+  </footer>
+
+  <script src="./engine.js"></script>
+</body>
+</html>
