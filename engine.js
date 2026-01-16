@@ -224,7 +224,7 @@ function renderOutput(ctx) {
 
   renderList(
     $("stop_list"),
-    stopC,
+    stop,
     "No common time-sinks stand out here. Focus on clean execution of the viable plan."
   );
 
@@ -479,5 +479,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
 
