@@ -22,6 +22,13 @@
     button.primary { background: #111; color: #fff; border-color: #111; }
     button:disabled { opacity: 0.5; cursor: not-allowed; }
     .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid #ddd; font-size: 12px; background: #fff; }
+    /* Output helper line under headers */
+    .out-help { margin: 4px 0 10px; color: #666; font-size: 12px; line-height: 1.35; }
+
+    /* Framing note box */
+   .note-box { background: #f7f7f7; border: 1px solid #e6e6e6; border-radius: 10px; padding: 12px; }
+    .note-box strong { font-weight: 700; }
+
     .muted { color: #666; font-size: 13px; }
     .helper { margin-top: 6px; color: #666; font-size: 12px; line-height: 1.35; }
     .out h3 { margin: 12px 0 8px; font-size: 14px; }
@@ -311,7 +318,7 @@
           </span>
         </label>
         <input id="summer_travel_weeks" type="number" min="0" max="8" step="1" value="0" />
-        <div class="helper">Optional. Use 0 if unknown.</div>
+        <div class="helper">Optional. This helps determine if summer classes are realistically feasible (3+ travel weeks often makes them hard to execute).</div>
 
         <div class="divider"></div>
 
@@ -398,6 +405,16 @@
       <section class="card out">
         <h2>Output</h2>
         <div class="muted">Results appear here. This prototype intentionally avoids probability language.</div>
+	<div class="divider"></div>
+
+	<div class="note-box">
+  	<div class="muted">
+    		<strong>How to read these results:</strong>
+		GPA and timing determine what is structurally possible.
+		Essays and activities can strengthen an application <em>only after a path is viable</em> — they do not rescue paths that are already locked.
+		This tool focuses on where effort still changes outcomes.
+  	</div>
+	</div>	
 
         <div class="divider"></div>
 
@@ -406,25 +423,31 @@
           <span class="pill" id="pill_time_window">Time window: —</span>
         </div>
 
-        <h3>What is locked</h3>
-        <ul id="locked_list"></ul>
+        <h3>🔒 What is locked</h3>
+	<div class="out-help">Paths that are no longer realistic given GPA and timing. This prevents wasted effort.</div>
+	<ul id="locked_list"></ul>
 
-        <h3>What remains viable</h3>
-        <ul id="viable_list"></ul>
 
-        <h3>High-ROI actions</h3>
-        <ul id="actions_list"></ul>
+        <h3>✅ What remains viable</h3>
+	<div class="out-help">Paths where effort can still realistically convert into outcomes. Not guarantees.</div>
+	<ul id="viable_list"></ul>
 
-        <h3>Stop list</h3>
-        <ul id="stop_list"></ul>
+	<h3>🎯 High-ROI actions</h3>
+	<div class="out-help">Actions that still change outcomes within viable paths. “High-ROI” = worth time now.</div>
+	<ul id="actions_list"></ul>
 
-        <h3>What success looks like from here</h3>
-        <div id="success_box" class="muted"></div>
+	<h3>🛑 Stop list</h3>
+	<div class="out-help">Actions that sound helpful but are unlikely to change outcomes <em>right now</em>.</div>
+	<ul id="stop_list"></ul>
+
+	<h3>🧭 What success looks like from here</h3>
+	<div class="out-help">A plain-language definition of “doing well” from this point forward.</div>
+	<div id="success_box" class="muted"></div>
 
         <div class="divider"></div>
 
         <!-- UC Explainer (Collapsible) -->
-        <div class="card" id="uc_explainer_wrap" style="display:none;">
+        <div id="uc_explainer_wrap" style="display:none;">
           <details id="uc_explainer" class="details">
             <summary class="details__summary">
               How to read UC results: Access UC vs Floor-Guarded UC
@@ -523,8 +546,9 @@
 
         <div class="divider"></div>
 
-        <h3>Notes</h3>
-        <ul id="notes_list"></ul>
+	<h3>📝 Notes</h3>
+	<div class="out-help">Context and campus nuance — explains why certain guidance appears.</div>
+	<ul id="notes_list"></ul>
 
         <div class="divider"></div>
 
