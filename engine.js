@@ -225,7 +225,7 @@ function renderOutput(ctx) {
   renderList(
     $("stop_list"),
     stopC,
-    "No specific actions need to be avoided beyond standard guidance."
+    "No common time-sinks stand out here. Focus on clean execution of the viable plan."
   );
 
   $("success_box").textContent = successText;
@@ -479,4 +479,5 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
