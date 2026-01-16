@@ -111,7 +111,6 @@ function applyThen(ctx, rule) {
   applySuppress(ctx.state, t.set_suppress);
 }
 
-
 function chooseSuccessTemplate(ctx) {
   if (ctx?.derived?.time_window === "closed") return "closed_window";
 
@@ -127,19 +126,19 @@ function chooseSuccessTemplate(ctx) {
     return ccConsidered ? "cc_to_uc" : "cc_transfer_refused";
   }
 
-// UC-specific success framing
-if (systems.includes("uc")) {
-  if (campuses.includes("UCM")) return "access_uc";
-  if (["UCR","UCSC","UCSD","UCLA"].some(c => campuses.includes(c)))
-    return "floor_guarded_uc";
+  // UC-specific success framing
+  if (systems.includes("uc")) {
+    if (campuses.includes("UCM")) return "access_uc";
+    if (["UCR", "UCSC", "UCSD", "UCLA"].some(c => campuses.includes(c))) {
+      return "floor_guarded_uc";
+    }
 
-  if (ctx?.derived?.time_window === "early") return "mid_uc_early";
-  return "mid_uc_late";
-}
+    if (ctx?.derived?.time_window === "early") return "mid_uc_early";
+    return "mid_uc_late";
+  }
 
   return "csu";
 }
-
 
 function enforceConstraints(arr, maxN) {
   if (!Array.isArray(arr)) return [];
@@ -162,7 +161,6 @@ function renderList(el, items, emptyText) {
   }
 }
 
-
 function renderOutput(ctx) {
   const { outputs } = ctx.state;
   const c = RULESET.output_constraints;
@@ -173,9 +171,13 @@ function renderOutput(ctx) {
 
   // Apply suppression to actions/notes display (simple version)
   let actions = outputs.actions.slice();
-  let stop = outputs.stop.slice();
+  const stop = outputs.stop.slice();
+
   // If a modifier is suppressed, remove action lines that mention it (coarse but safe for v1)
-  const suppressedKeys = Object.entries(ctx.state.suppress).filter(([,v]) => v === true).map(([k]) => k);
+  const suppressedKeys = Object.entries(ctx.state.suppress)
+    .filter(([, v]) => v === true)
+    .map(([k]) => k);
+
   const filterSuppressed = (line) => {
     const s = line.toLowerCase();
     if (suppressedKeys.includes("testing") && s.includes("test")) return false;
@@ -186,53 +188,51 @@ function renderOutput(ctx) {
     if (suppressedKeys.includes("middle_college") && s.includes("middle college")) return false;
     return true;
   };
-  actions = actions.filter(filterSuppressed);
-  // Do NOT filter stop warnings; suppression is about not recommending levers,
-  // not about hiding cautions.
-  stop = stop;
 
+  actions = actions.filter(filterSuppressed);
 
   actions = enforceConstraints(actions, c.max_actions || 5);
-  stop = enforceConstraints(stop, c.max_stop || 5);
+  const stopC = enforceConstraints(stop, c.max_stop || 5);
 
   // Success definition
   const templateKey = chooseSuccessTemplate(ctx);
-  const successText = RULESET.success_templates?.[templateKey] || "Define success based on the primary viable pathway.";
+  const successText =
+    RULESET.success_templates?.[templateKey] ||
+    "Define success based on the primary viable pathway.";
 
   // Render pills
   $("pill_gpa_band").textContent = `GPA band: ${ctx.derived.gpa_band}`;
   $("pill_time_window").textContent = `Time window: ${ctx.derived.time_window}`;
 
-renderList(
-  $("locked_list"),
-  locked,
-  "No additional paths are locked beyond what is already structurally known."
-);
+  renderList(
+    $("locked_list"),
+    locked,
+    "No additional paths are locked beyond what is already structurally known."
+  );
 
-renderList(
-  $("viable_list"),
-  viable,
-  "No new pathways emerged beyond what is already expected. This confirms your current understanding."
-);
+  renderList(
+    $("viable_list"),
+    viable,
+    "No new pathways emerged beyond what is already expected. This confirms your current understanding."
+  );
 
-renderList(
-  $("actions_list"),
-  actions,
-  "No additional high-impact actions surfaced beyond standard application execution."
-);
+  renderList(
+    $("actions_list"),
+    actions,
+    "No additional high-impact actions surfaced beyond standard application execution."
+  );
 
-renderList(
-  $("stop_list"),
-  stop,
-  "No specific actions need to be avoided beyond standard guidance."
-);
+  renderList(
+    $("stop_list"),
+    stopC,
+    "No specific actions need to be avoided beyond standard guidance."
+  );
 
-$("success_box").textContent = successText;
+  $("success_box").textContent = successText;
 
-// Notes (dedupe + keep short)
-const notes = enforceConstraints(Array.from(new Set(outputs.notes)), 8);
-renderList($("notes_list"), notes, "No additional context is required for this scenario.");
-
+  // Notes (dedupe + keep short)
+  const notes = enforceConstraints(Array.from(new Set(outputs.notes)), 8);
+  renderList($("notes_list"), notes, "No additional context is required for this scenario.");
 }
 
 function readInputs() {
@@ -350,6 +350,48 @@ async function submitFeedback(payload) {
   return { ok: true, queued: true };
 }
 
+// -------------------- Tooltip close behavior --------------------
+// Closes any open :focus-within tooltip when tapping outside it (mobile-friendly)
+// and supports Escape-to-close for keyboard users.
+function setupTooltipCloseHandlers() {
+  const TIPWRAP_SEL = ".tipwrap";
+
+  function closestTipwrap(node) {
+    if (!node || !(node instanceof Element)) return null;
+    return node.closest(TIPWRAP_SEL);
+  }
+
+  function closeIfTooltipOpen() {
+    const active = document.activeElement;
+    const openWrap = closestTipwrap(active);
+    if (openWrap && active && typeof active.blur === "function") {
+      active.blur(); // collapses :focus-within
+      return true;
+    }
+    return false;
+  }
+
+  // pointerdown fires reliably on touch + mouse, before click delays
+  document.addEventListener(
+    "pointerdown",
+    (e) => {
+      const active = document.activeElement;
+      const openWrap = closestTipwrap(active);
+      if (!openWrap) return; // nothing open
+      if (openWrap.contains(e.target)) return; // tapped inside -> don't close
+      closeIfTooltipOpen();
+    },
+    { passive: true }
+  );
+
+  // Keyboard support: Escape closes an open tooltip
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const didClose = closeIfTooltipOpen();
+    if (didClose) e.preventDefault();
+  });
+}
+
 // -------------------- UI wiring --------------------
 
 function toggleUcExplainer(ctx) {
@@ -362,19 +404,11 @@ function toggleUcExplainer(ctx) {
   wrap.style.display = show ? "block" : "none";
 }
 
-
 function updateMonthBucketVisibility() {
   const grade = parseInt($("grade_level").value, 10);
-  //console.log("DEBUG: updateMonthBucketVisibility fired. grade =", grade);
-
   const wrap = $("month_bucket_wrap");
-  //console.log("DEBUG: before toggle classes:", wrap.className);
-
   wrap.classList.toggle("hidden", grade !== 12);
-
-  //console.log("DEBUG: after toggle classes:", wrap.className);
 }
-
 
 async function loadRules() {
   const res = await fetch(CONFIG.RULES_PATH);
@@ -399,6 +433,7 @@ function resetUI() {
 window.addEventListener("DOMContentLoaded", async () => {
   await loadRules();
   updateMonthBucketVisibility();
+  setupTooltipCloseHandlers();
 
   $("grade_level").addEventListener("change", updateMonthBucketVisibility);
 
