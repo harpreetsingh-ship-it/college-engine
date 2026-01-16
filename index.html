@@ -90,6 +90,20 @@
       user-select: none;
     }
     .tipbtn:focus { outline: 2px solid rgba(17,17,17,0.25); outline-offset: 2px; }
+/* Tooltip content formatting */
+.tipcard .tiptext{
+  display: block;
+}
+
+.tiphint{
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.75;
+  user-select: none;
+  pointer-events: none;
+}
+
 
     /* Small callout block */
     .callout {
@@ -138,7 +152,14 @@
               Current grade level
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">This drives what is still changeable. Senior year (especially Oct+) has fewer levers.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+			This drives what is still changeable. Senior year (especially Oct+) has fewer levers.  
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+		</span>
               </span>
             </label>
             <select id="grade_level">
@@ -154,8 +175,17 @@
               If 12th grade: where are you in the school year?
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">After October, most admissions outcomes are already driven by earlier grades. This tool shifts from “build signal” to “avoid mistakes.”</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		After October, most admissions outcomes are already driven by earlier grades. This tool shifts from “build signal” to “avoid mistakes.”	
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+		</span>
               </span>
+
+
             </label>
             <select id="grade_month_bucket">
               <option value="pre_october">Before October</option>
@@ -170,7 +200,14 @@
               Unweighted GPA
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">Use the GPA from the transcript (not weighted). This is the main structural gate in the engine.</span>
+                <span class="tipcard">
+			<span class="tiptext">
+			Use the GPA from the transcript (not weighted). This is the main structural gate in the engine.
+			</span>
+			<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+		</span>
               </span>
             </label>
             <input id="gpa_unweighted" type="number" min="2.0" max="4.0" step="0.01" value="3.50" />
@@ -182,7 +219,14 @@
               GPA direction (last 2 semesters)
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">Improving helps. Flat/declining means fewer realistic upgrades without changing strategy.</span>
+                <span class="tipcard">
+			<span class="tiptext">
+				Improving helps. Flat/declining means fewer realistic upgrades without changing strategy.
+			</span>
+			<span class="tiphint" aria-hidden="true">
+			    Tap anywhere to close.
+			  </span>
+		</span>
               </span>
             </label>
             <select id="gpa_trend">
@@ -197,7 +241,15 @@
           Where are the lower grades mostly happening?
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-            <span class="tipcard">This helps the engine detect patterns (e.g., math/science weakness vs broadly spread).</span>
+            <span class="tipcard">
+		<span class="tiptext">
+			This helps the engine detect patterns (e.g., math/science weakness vs broadly spread).
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+	    </span>
           </span>
         </label>
         <select id="grade_concentration">
@@ -213,7 +265,14 @@
           Likely major / direction (best guess)
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-            <span class="tipcard">This is not a commitment. It helps the tool distinguish “impacted” majors (harder admission) from less impacted ones.</span>
+            <span class="tipcard">
+		<span class="tiptext">
+		This is not a commitment. It helps the tool distinguish “impacted” majors (harder admission) from less impacted ones.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+	   </span>
           </span>
         </label>
         <select id="major_bucket">
@@ -229,7 +288,15 @@
           Which college systems are you seriously considering?
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-            <span class="tipcard">This is about realistic planning, not aspiration. Select what you’re willing to apply to.</span>
+            <span class="tipcard">
+	    		<span class="tiptext">
+		This is about realistic planning, not aspiration. Select what you’re willing to apply to.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+	   </span>
           </span>
         </label>
         <select id="systems_considered" multiple size="5">
@@ -252,7 +319,14 @@
               Prefer protecting GPA over taking harder classes?
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">Some schools push AP/Honors broadly. This tool defaults to protecting GPA when the risk is high.</span>
+                <span class="tipcard">
+			<span class="tiptext">
+			Some schools push AP/Honors broadly. This tool defaults to protecting GPA when the risk is high.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>		
+		</span>
               </span>
             </label>
             <select id="willing_prioritize_gpa_over_rigor">
@@ -267,7 +341,15 @@
               Willing to take summer classes?
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">Summer academics can help in certain GPA bands if you can realistically earn As in aligned classes.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		Summer academics can help in certain GPA bands if you can realistically earn As in aligned classes.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>
               </span>
             </label>
             <select id="willing_summer_academics">
@@ -284,7 +366,15 @@
               Willing to prioritize academics over activities?
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">Activities matter most when GPA is already strong. If time sinks are pulling GPA down, academics usually win.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		Activities matter most when GPA is already strong. If time sinks are pulling GPA down, academics usually win.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>
               </span>
             </label>
             <select id="willing_reduce_ecs">
@@ -299,7 +389,15 @@
               Open to community college pathways (dual enrollment or transfer)?
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">This does not force transfer. It allows the engine to surface CC-based levers when they are the most reliable option.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+			This does not force transfer. It allows the engine to surface CC-based levers when they are the most reliable option.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>
               </span>
             </label>
             <select id="open_to_cc_pathways">
@@ -314,7 +412,14 @@
           Summer travel time (weeks)
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-            <span class="tipcard">If you’ll be traveling 3+ weeks, summer classes become harder to execute even if online.</span>
+            <span class="tipcard">
+		<span class="tiptext">
+		If you’ll be traveling 3+ weeks, summer classes become harder to execute even if online.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+	   </span>
           </span>
         </label>
         <input id="summer_travel_weeks" type="number" min="0" max="8" step="1" value="0" />
@@ -331,7 +436,15 @@
               UC campuses you’re considering (optional)
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">Selecting campuses enables the Access vs Floor-Guarded logic and campus notes.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		Selecting campuses enables the Access vs Floor-Guarded logic and campus notes.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>
               </span>
             </label>
             <select id="campus_targets_uc" multiple size="5">
@@ -353,7 +466,15 @@
               Retaken a class due to a D/F? If yes, when?
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">This is about whether a low grade happened early (more recoverable) or late (higher risk). Leave blank if not sure.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		This is about whether a low grade happened early (more recoverable) or late (higher risk). Leave blank if not sure.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>
               </span>
             </label>
             <select id="academic_anomaly_timing">
@@ -367,7 +488,15 @@
               Activities: leadership / awards (optional)
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">This is not about “more clubs.” It’s about whether activities create real signal: leadership, awards, or both.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		This is not about “more clubs.” It’s about whether activities create real signal: leadership, awards, or both.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>	
               </span>
             </label>
             <select id="ec_leadership_recognition">
@@ -382,7 +511,15 @@
               Senior-year “signals” (optional)
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
-                <span class="tipcard">These can amplify an already-viable path. They do not rescue a path that’s structurally locked.</span>
+                <span class="tipcard">
+		<span class="tiptext">
+		These can amplify an already-viable path. They do not rescue a path that’s structurally locked.
+		</span>
+		<span class="tiphint" aria-hidden="true">
+		    Tap anywhere to close.
+		  </span>
+
+		</span>
               </span>
             </label>
             <select id="senior_course_signals" multiple size="3">
