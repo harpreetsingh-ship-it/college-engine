@@ -146,12 +146,12 @@ function enforceConstraints(arr, maxN) {
   return arr.slice(0, maxN);
 }
 
-function renderList(el, items) {
+function renderList(el, items, emptyText) {
   el.innerHTML = "";
   if (!items || items.length === 0) {
     const li = document.createElement("li");
     li.className = "muted";
-    li.textContent = "—";
+    li.textContent = emptyText || "No items.";
     el.appendChild(li);
     return;
   }
@@ -161,6 +161,7 @@ function renderList(el, items) {
     el.appendChild(li);
   }
 }
+
 
 function renderOutput(ctx) {
   const { outputs } = ctx.state;
@@ -186,7 +187,10 @@ function renderOutput(ctx) {
     return true;
   };
   actions = actions.filter(filterSuppressed);
-  stop = stop.filter(filterSuppressed); // keep as-is
+  // Do NOT filter stop warnings; suppression is about not recommending levers,
+  // not about hiding cautions.
+  stop = stop;
+
 
   actions = enforceConstraints(actions, c.max_actions || 5);
   stop = enforceConstraints(stop, c.max_stop || 5);
@@ -199,15 +203,36 @@ function renderOutput(ctx) {
   $("pill_gpa_band").textContent = `GPA band: ${ctx.derived.gpa_band}`;
   $("pill_time_window").textContent = `Time window: ${ctx.derived.time_window}`;
 
-  renderList($("locked_list"), locked);
-  renderList($("viable_list"), viable);
-  renderList($("actions_list"), actions);
-  renderList($("stop_list"), stop);
-  $("success_box").textContent = successText;
+renderList(
+  $("locked_list"),
+  locked,
+  "No additional paths are locked beyond what is already structurally known."
+);
 
-  // Notes (dedupe + keep short)
-  const notes = enforceConstraints(Array.from(new Set(outputs.notes)), 8);
-  renderList($("notes_list"), notes);
+renderList(
+  $("viable_list"),
+  viable,
+  "No new pathways emerged beyond what is already expected. This confirms your current understanding."
+);
+
+renderList(
+  $("actions_list"),
+  actions,
+  "No additional high-impact actions surfaced beyond standard application execution."
+);
+
+renderList(
+  $("stop_list"),
+  stop,
+  "No specific actions need to be avoided beyond standard guidance."
+);
+
+$("success_box").textContent = successText;
+
+// Notes (dedupe + keep short)
+const notes = enforceConstraints(Array.from(new Set(outputs.notes)), 8);
+renderList($("notes_list"), notes, "No additional context is required for this scenario.");
+
 }
 
 function readInputs() {
@@ -340,14 +365,14 @@ function toggleUcExplainer(ctx) {
 
 function updateMonthBucketVisibility() {
   const grade = parseInt($("grade_level").value, 10);
-  console.log("DEBUG: updateMonthBucketVisibility fired. grade =", grade);
+  //console.log("DEBUG: updateMonthBucketVisibility fired. grade =", grade);
 
   const wrap = $("month_bucket_wrap");
-  console.log("DEBUG: before toggle classes:", wrap.className);
+  //console.log("DEBUG: before toggle classes:", wrap.className);
 
   wrap.classList.toggle("hidden", grade !== 12);
 
-  console.log("DEBUG: after toggle classes:", wrap.className);
+  //console.log("DEBUG: after toggle classes:", wrap.className);
 }
 
 
