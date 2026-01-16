@@ -207,7 +207,7 @@ function renderOutput(ctx) {
   renderList(
     $("locked_list"),
     locked,
-    "No additional paths are locked beyond what is already structurally known."
+    "No new pathways are closing at this point. What’s listed elsewhere reflects the current planning reality."
   );
 
   renderList(
@@ -479,3 +479,4 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
