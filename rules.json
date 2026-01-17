@@ -32,10 +32,13 @@
   "Keep senior-year grades steady to avoid rescind risk."
 ],
         "add_stop": [
-          "Last-minute fixes",
-          "New ECs as rescue",
-          "Testing as rescue"
-        ],
+  "Making late academic changes",
+  "Chasing new extracurriculars or leadership titles",
+  "Reworking essays after submission",
+  "Assuming exceptions, appeals, or discretionary overrides",
+  "Comparing to outlier success stories",
+  "Spreading effort across too many applications"
+],
         "set_suppress": {
           "cc": true,
           "ap": true,
@@ -340,4 +343,5 @@
   "cc_transfer_refused": "Your GPA band makes transfer the most reliable lever. If CC transfer is off the table, define success as: protect GPA, target CSU fit-by-major, and plan a stronger pivot later (including transfer or post-grad options)."
 }
 }
+
 
