@@ -87,8 +87,8 @@
       "then": {
         "add_viable": [
           "CSU",
-          "CC→UC (primary)",
-          "CC→CSU"
+          "Community college, then transfer to a UC (primary)",
+          "Community college, then transfer to a CSU"
         ],
         "add_locked": [
           "Top-tier UC",
@@ -102,7 +102,7 @@
       "when": { "field": "derived.gpa_band", "in": ["D", "E"] },
       "then": {
         "add_viable": [
-          "CC→CSU",
+          "Community college, then transfer to a CSU",
           "Limited CSU (non-STEM)"
         ],
         "add_locked": ["All UCs (direct)","Private/OOS"]
@@ -135,7 +135,7 @@
       },
       "then": {
         "add_actions": [
-          "Choose: academic repair in core skills OR pathway realignment (CSU / CC→transfer)."
+          "Choose: academic repair in core skills OR pathway realignment (CSU / start community college and then transfer)."
         ]
       }
     },
@@ -171,7 +171,7 @@
         ]
       },
       "then": {
-        "add_actions": ["Use aligned CC coursework only if A-level performance is realistic."]
+        "add_actions": ["Use aligned Community College coursework only if A-level performance is realistic."]
       }
     },
     {
@@ -328,7 +328,7 @@
 "success_templates": {
   "closed_window": "Execute applications cleanly, avoid errors, protect grades to prevent rescind risk, and focus on final submission quality (not new signals).",
 
-  "cc_to_uc": "Build a high CC GPA, complete transferable units, and execute TAG/TAP (where eligible).",
+  "cc_to_uc": "Build a high Community College GPA, complete transferable units, and execute TAG/TAP (where eligible).",
 
   "csu": "Choose a CSU where you can thrive, then leverage performance and post-enrollment opportunities.",
 
@@ -340,8 +340,9 @@
 
   "floor_guarded_uc": "Some UC campuses apply strong GPA floors. Treat these as constrained or long-shot options while prioritizing pathways that reliably convert effort into outcomes.",
 
-  "cc_transfer_refused": "Your GPA band makes transfer the most reliable lever. If CC transfer is off the table, define success as: protect GPA, target CSU fit-by-major, and plan a stronger pivot later (including transfer or post-grad options)."
+  "cc_transfer_refused": "Your GPA band makes transfer the most reliable lever. If Community College transfer is off the table, define success as: protect GPA, target CSU fit-by-major, and plan a stronger pivot later (including transfer or post-grad options)."
 }
 }
+
 
 
