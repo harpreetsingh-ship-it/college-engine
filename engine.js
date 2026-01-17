@@ -210,12 +210,13 @@ function renderOutput(ctx) {
     "No new pathways are closing at this point. What’s listed elsewhere reflects the current planning reality."
   );
 
-  renderList(
-    $("viable_list"),
-    viable,
-    "No new pathways emerged beyond what is already expected. This confirms your current understanding."
-  );
+renderList(
+  $("viable_list"),
+  viable,
+  "No additional viable routes surfaced from these inputs. If this feels wrong, double-check GPA and grade level."
+);
 
+  
   renderList(
     $("actions_list"),
     actions,
@@ -479,6 +480,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
 
 
