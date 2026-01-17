@@ -181,14 +181,28 @@ function renderOutput(ctx) {
     .map(([k]) => k);
 
   const filterSuppressed = (line) => {
-    const s = line.toLowerCase();
-    if (suppressedKeys.includes("testing") && s.includes("test")) return false;
-    if (suppressedKeys.includes("cc") && s.includes("cc")) return false;
-    if (suppressedKeys.includes("ap") && (s.includes("ap") || s.includes("honors"))) return false;
-    if (suppressedKeys.includes("internships") && s.includes("intern")) return false;
-    if (suppressedKeys.includes("extracurriculars") && (s.includes("ec") || s.includes("club"))) return false;
-    if (suppressedKeys.includes("middle_college") && s.includes("middle college")) return false;
-    return true;
+    const s = String(line || "").toLowerCase();
+    
+    // helper: whole-word match (avoids 'ap' matching 'application')
+    const hasWord = (word) => new RegExp(`\\b${word}\\b`, "i").test(s)
+
+  // If a modifier is suppressed, remove action lines that mention it (coarse but safe for v1)
+  if (suppressedKeys.includes("testing") && s.includes("test")) return false;
+
+  // cc: match whole word "cc" OR explicit phrase
+  if (suppressedKeys.includes("cc") && (hasWord("cc") || s.includes("community college"))) return false;
+
+  // ap: match whole word "ap" OR explicit "honors"/"ib" (but NOT "application")
+  if (suppressedKeys.includes("ap") && (hasWord("ap") || s.includes("honors") || hasWord("ib"))) return false;
+
+  if (suppressedKeys.includes("internships") && (s.includes("intern") || s.includes("internship"))) return false;
+
+  // extracurriculars: match "ec" as a word (avoid random 'ec' inside words)
+  if (suppressedKeys.includes("extracurriculars") && (hasWord("ec") || s.includes("club"))) return false;
+
+  if (suppressedKeys.includes("middle_college") && s.includes("middle college")) return false;
+
+  return true;
   };
 
   actions = actions.filter(filterSuppressed);
@@ -483,6 +497,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
 
 
