@@ -192,7 +192,8 @@ function renderOutput(ctx) {
   };
 
   actions = actions.filter(filterSuppressed);
-
+  console.log("ACTIONS_AFTER_SUPPRESSION:", actions);
+  
   actions = enforceConstraints(actions, c.max_actions || 5);
   const stopC = enforceConstraints(stop, c.max_stop || 5);
 
@@ -482,6 +483,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
 
 
