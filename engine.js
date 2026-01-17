@@ -171,6 +171,8 @@ function renderOutput(ctx) {
 
   // Apply suppression to actions/notes display (simple version)
   let actions = outputs.actions.slice();
+  console.log("ACTIONS_RAW (before suppression & limits):", outputs.actions);
+
   const stop = outputs.stop.slice();
 
   // If a modifier is suppressed, remove action lines that mention it (coarse but safe for v1)
@@ -480,6 +482,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
 
 
