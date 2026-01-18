@@ -301,13 +301,14 @@ function readInputs() {
     senior_course_signals: getMultiSelectValues($("senior_course_signals"))
   };
 
-  return input;
   console.log("INPUT GPA CHECK", {
     gpa_unweighted: input.gpa_unweighted,
     gpa_overall: input.gpa_overall,
     gpa_uc_csu: input.gpa_uc_csu
   });
 
+  return input;
+  
 }
 
 function initState() {
