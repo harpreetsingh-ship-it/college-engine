@@ -171,7 +171,7 @@ function renderOutput(ctx) {
 
   // Apply suppression to actions/notes display (simple version)
   let actions = outputs.actions.slice();
-  console.log("ACTIONS_RAW (before suppression & limits):", outputs.actions);
+  //console.log("ACTIONS_RAW (before suppression & limits):", outputs.actions);
 
   const stop = outputs.stop.slice();
 
@@ -206,7 +206,7 @@ function renderOutput(ctx) {
   };
 
   actions = actions.filter(filterSuppressed);
-  console.log("ACTIONS_AFTER_SUPPRESSION:", actions);
+  //console.log("ACTIONS_AFTER_SUPPRESSION:", actions);
   
   actions = enforceConstraints(actions, c.max_actions || 5);
   const stopC = enforceConstraints(stop, c.max_stop || 5);
@@ -301,11 +301,11 @@ function readInputs() {
     senior_course_signals: getMultiSelectValues($("senior_course_signals"))
   };
 
-  console.log("INPUT GPA CHECK", {
-    gpa_unweighted: input.gpa_unweighted,
-    gpa_overall: input.gpa_overall,
-    gpa_uc_csu: input.gpa_uc_csu
-  });
+  //console.log("INPUT GPA CHECK", {
+    //gpa_unweighted: input.gpa_unweighted,
+   // gpa_overall: input.gpa_overall,
+   // gpa_uc_csu: input.gpa_uc_csu
+ // });
 
   return input;
   
