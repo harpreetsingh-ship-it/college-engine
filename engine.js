@@ -259,11 +259,29 @@ function readInputs() {
 
   const gpa_unweighted = clamp(parseFloat($("gpa_unweighted").value), 2.0, 4.0);
 
+
+    // NEW: GPA inputs (safe fallbacks until UI is wired)
+  const gpa_overall_el = $("gpa_overall");
+  const gpa_uc_csu_el = $("gpa_uc_csu");
+
+  const gpa_overall = gpa_overall_el
+    ? clamp(parseFloat(gpa_overall_el.value), 2.0, 4.0)
+    : gpa_unweighted; // fallback for now
+
+  const gpa_uc_csu = gpa_uc_csu_el
+    ? clamp(parseFloat(gpa_uc_csu_el.value), 2.0, 4.0)
+    : gpa_unweighted; // fallback for now
+ 
+
   const input = {
     grade_level,
     grade_month_bucket: grade_level === 12 ? grade_month_bucket : null,
 
-    gpa_unweighted,
+     // GPA inputs
+    gpa_unweighted,   // legacy (will phase out)
+    gpa_overall,      // Private / OOS
+    gpa_uc_csu,       // UC / CSU
+
     gpa_trend: $("gpa_trend").value,
     grade_concentration: $("grade_concentration").value,
     major_bucket: $("major_bucket").value,
@@ -284,6 +302,12 @@ function readInputs() {
   };
 
   return input;
+  console.log("INPUT GPA CHECK", {
+    gpa_unweighted: input.gpa_unweighted,
+    gpa_overall: input.gpa_overall,
+    gpa_uc_csu: input.gpa_uc_csu
+  });
+
 }
 
 function initState() {
@@ -497,6 +521,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
 
 
 
