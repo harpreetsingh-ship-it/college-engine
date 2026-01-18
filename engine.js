@@ -318,10 +318,22 @@ function initState() {
 }
 
 function runEngine(input) {
-  const derived = {
-    gpa_band: computeGpaBand(input.gpa_unweighted),
+    const derived = {
+    // Two GPA lenses:
+    // - overall: includes 9th grade (Private/OOS typically consider full HS record)
+    // - uc_csu: excludes 9th grade (UC/CSU GPA is based on 10th–11th for planning purposes)
+    gpa_band_overall: computeGpaBand(input.gpa_overall),
+    gpa_band_uc_csu: computeGpaBand(input.gpa_uc_csu),
+
+    // Backward-compatible default (used by existing rules until we update rules.json):
+    // If the user is considering UC or CSU, use the uc_csu band; otherwise use overall.
+    gpa_band: (input.systems_considered || []).some(s => s === "uc" || s === "csu")
+      ? computeGpaBand(input.gpa_uc_csu)
+      : computeGpaBand(input.gpa_overall),
+
     time_window: computeTimeWindow(input.grade_level, input.grade_month_bucket)
   };
+
 
   const ctx = {
     input,
