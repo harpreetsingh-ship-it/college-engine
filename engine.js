@@ -114,31 +114,45 @@ function applyThen(ctx, rule) {
 function chooseSuccessTemplate(ctx) {
   if (ctx?.derived?.time_window === "closed") return "closed_window";
 
-  const band = ctx?.derived?.gpa_band;
   const systems = ctx?.input?.systems_considered || [];
   const campuses = ctx?.input?.campus_targets_uc || [];
 
-  const ccStructurallyPrimary = (band === "C" || band === "D" || band === "E");
-  const ccConsidered = systems.includes("cc_transfer");
+  const bandUC = ctx?.derived?.gpa_band_uc_csu;
+  const bandOverall = ctx?.derived?.gpa_band_overall;
 
-  // Transfer logic stays unchanged
-  if (ccStructurallyPrimary) {
-    return ccConsidered ? "cc_to_uc" : "cc_transfer_refused";
+  const hasUC = systems.includes("uc");
+  const hasCSU = systems.includes("csu");
+  const hasPrivate = systems.includes("private_oos");
+  const hasCC = systems.includes("cc_transfer");
+
+  // 1) Private/OOS-only: success framing should NOT default to CC
+  if (hasPrivate && !hasUC && !hasCSU) {
+    if (["D", "E"].includes(bandOverall)) return "private_oos_low";
+    if (bandOverall === "C") return "private_oos_mid";
+    return "private_oos_high"; // A or B
   }
 
-  // UC-specific success framing
-  if (systems.includes("uc")) {
+  // 2) CC logic: only primary when UC/CSU band is low AND UC/CSU is in play
+  const ccStructurallyPrimary = ["C", "D", "E"].includes(bandUC);
+
+  if ((hasUC || hasCSU) && ccStructurallyPrimary) {
+    return hasCC ? "cc_to_uc" : "cc_transfer_refused";
+  }
+
+  // 3) UC-specific success framing
+  if (hasUC) {
     if (campuses.includes("UCM")) return "access_uc";
     if (["UCR", "UCSC", "UCSD", "UCLA"].some(c => campuses.includes(c))) {
       return "floor_guarded_uc";
     }
-
     if (ctx?.derived?.time_window === "early") return "mid_uc_early";
     return "mid_uc_late";
   }
 
+  // 4) Default
   return "csu";
 }
+
 
 function enforceConstraints(arr, maxN) {
   if (!Array.isArray(arr)) return [];

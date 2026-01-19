@@ -1,45 +1,214 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>College Pathways Decision Engine (Prototype)</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 0; background: #fafafa; }
-    header { background: #111; color: #fff; padding: 16px 20px; }
-    header h1 { margin: 0; font-size: 18px; }
-    header p { margin: 6px 0 0; opacity: 0.85; font-size: 13px; line-height: 1.35; }
-    main { max-width: 980px; margin: 0 auto; padding: 18px; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .card { background: #fff; border: 1px solid #e6e6e6; border-radius: 10px; padding: 14px; }
-    .card h2 { margin: 0 0 10px; font-size: 16px; }
-    label { display: block; font-size: 13px; margin: 10px 0 6px; color: #222; }
-    input[type="number"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-size: 14px; }
-    textarea { min-height: 70px; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .btnbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    button { padding: 10px 12px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; }
-    button.primary { background: #111; color: #fff; border-color: #111; }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-    .pill { display: inline-block; padding: 3px 9px; border-radius: 999px; border: 1px solid #ddd; font-size: 12px; background: #fff; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 16px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      opacity: 0.85;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin: 10px 0 6px;
+      color: #222;
+    }
+
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 70px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* Allow grid children to shrink (prevents overlap in CSS grid) */
+    .row>div {
+      min-width: 0; 
+      position: relative;
+    }
+
+    /* Make form controls respect container width in grid */
+    input[type="number"], select, textarea { max-width: 100%; box-sizing: border-box; }
+
+    .tipcard {
+      right: auto;
+      left: 0;
+    }
+
+    .btnbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    button {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: 12px;
+      background: #fff;
+    }
+
     /* Output helper line under headers */
-    .out-help { margin: 4px 0 10px; color: #666; font-size: 12px; line-height: 1.35; }
+    .out-help {
+      margin: 4px 0 10px;
+      color: #666;
+      font-size: 12px;
+      line-height: 1.35;
+    }
 
     /* Framing note box */
-   .note-box { background: #f7f7f7; border: 1px solid #e6e6e6; border-radius: 10px; padding: 12px; }
-    .note-box strong { font-weight: 700; }
+    .note-box {
+      background: #f7f7f7;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 12px;
+    }
 
-    .muted { color: #666; font-size: 13px; }
-    .helper { margin-top: 6px; color: #666; font-size: 12px; line-height: 1.35; }
-    .out h3 { margin: 12px 0 8px; font-size: 14px; }
-    .out ul { margin: 0; padding-left: 18px; }
-    .out li { margin: 6px 0; }
-    .divider { height: 1px; background: #eee; margin: 12px 0; }
-    .hidden { display: none; }
-    .feedback { margin-top: 12px; }
-    .small { font-size: 12px; color: #666; }
-    footer { padding: 18px; text-align: center; color: #777; font-size: 12px; }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .note-box strong {
+      font-weight: 700;
+    }
+
+    .muted {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .helper {
+      margin-top: 6px;
+      color: #666;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .out h3 {
+      margin: 12px 0 8px;
+      font-size: 14px;
+    }
+
+    .out ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .out li {
+      margin: 6px 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: #eee;
+      margin: 12px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .feedback {
+      margin-top: 12px;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #666;
+    }
+
+    footer {
+      padding: 18px;
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* Tooltip icon (kept for fallback; not used directly once we switch to tipwrap) */
     .tip {
@@ -57,24 +226,36 @@
     }
 
     /* Mobile-friendly tooltip panel */
-    .tipwrap { position: relative; display: inline-block; }
+    .tipwrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Tooltip panel */
     .tipcard {
       display: none;
       position: absolute;
-      z-index: 50;
-      top: 24px;
-      right: 0;
+      z-index: 200;
+      /* above form fields */
+      top: 22px;
+      left: 0;
+      transform: translateX(-20px);
+      /* pulls it left so it doesn't cover the next column as much */
       width: min(320px, 85vw);
       background: #fff;
       border: 1px solid #e6e6e6;
       border-radius: 10px;
       padding: 10px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
       color: #222;
       font-size: 13px;
       line-height: 1.35;
     }
-    .tipwrap:focus-within .tipcard { display: block; }
+
+    .tipwrap:focus-within .tipcard {
+      display: block;
+    }
+
     .tipbtn {
       all: unset;
       display: inline-block;
@@ -89,20 +270,25 @@
       cursor: pointer;
       user-select: none;
     }
-    .tipbtn:focus { outline: 2px solid rgba(17,17,17,0.25); outline-offset: 2px; }
-/* Tooltip content formatting */
-.tipcard .tiptext{
-  display: block;
-}
 
-.tiphint{
-  display: block;
-  margin-top: 8px;
-  font-size: 12px;
-  opacity: 0.75;
-  user-select: none;
-  pointer-events: none;
-}
+    .tipbtn:focus {
+      outline: 2px solid rgba(17, 17, 17, 0.25);
+      outline-offset: 2px;
+    }
+
+    /* Tooltip content formatting */
+    .tipcard .tiptext {
+      display: block;
+    }
+
+    .tiphint {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      opacity: 0.75;
+      user-select: none;
+      pointer-events: none;
+    }
 
 
     /* Small callout block */
@@ -116,15 +302,41 @@
       margin: 10px 0 12px;
       line-height: 1.35;
     }
-    .callout strong { font-weight: 700; }
+
+    .callout strong {
+      font-weight: 700;
+    }
 
     /* UC explainer */
-    .details__summary { cursor: pointer; font-weight: 600; }
-    .details__body { margin-top: 12px; }
-    .table-wrap { overflow-x: auto; margin-top: 10px; }
-    .table { width: 100%; border-collapse: collapse; }
-    .table th, .table td { border: 1px solid rgba(0,0,0,0.15); padding: 8px; vertical-align: top; }
-    .muted-note { opacity: 0.75; }
+    .details__summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .details__body {
+      margin-top: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 8px;
+      vertical-align: top;
+    }
+
+    .muted-note {
+      opacity: 0.75;
+    }
   </style>
 </head>
 
@@ -132,7 +344,8 @@
   <header>
     <h1>College Pathways Decision Engine (Prototype)</h1>
     <p>
-      Deterministic rules. No accounts. No predictions. This tool helps families plan realistically based on what can still change.
+      Deterministic rules. No accounts. No predictions. This tool helps families plan realistically based on what can
+      still change.
     </p>
   </header>
 
@@ -142,7 +355,8 @@
         <h2>Inputs</h2>
 
         <div class="callout">
-          <strong>How to read this:</strong> GPA is the gate. Activities and essays can strengthen an application <em>after</em> GPA is in range — they rarely “rescue” a locked pathway.
+          <strong>How to read this:</strong> GPA is the gate. Activities and essays can strengthen an application
+          <em>after</em> GPA is in range — they rarely “rescue” a locked pathway.
           <div class="helper" style="margin-top:6px;">Phone tip: tap the ⓘ bubbles to open explanations.</div>
         </div>
 
@@ -153,13 +367,13 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-			This drives what is still changeable. Senior year (especially Oct+) has fewer levers.  
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
-		</span>
+                  <span class="tiptext">
+                    This drives what is still changeable. Senior year (especially Oct+) has fewer levers.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
+                </span>
               </span>
             </label>
             <select id="grade_level">
@@ -176,13 +390,14 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		After October, most admissions outcomes are already driven by earlier grades. This tool shifts from “build signal” to “avoid mistakes.”	
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
-		</span>
+                  <span class="tiptext">
+                    After October, most admissions outcomes are already driven by earlier grades. This tool shifts from
+                    “build signal” to “avoid mistakes.”
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
+                </span>
               </span>
 
 
@@ -196,37 +411,58 @@
 
         <div class="row">
           <div>
-            <label for="gpa_unweighted">
-              Unweighted GPA
+            <label for="gpa_uc_csu">
+              UC/CSU GPA (10th–11th only)
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-			<span class="tiptext">
-			Use the GPA from the transcript (not weighted). This is the main structural gate in the engine.
-			</span>
-			<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
-		</span>
+                  <span class="tiptext">
+                    UC and CSU GPA is based on 10th–11th grades (9th grade is not counted). Use the transcript GPA for
+                    those years if available.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">Tap anywhere to close.</span>
+                </span>
               </span>
             </label>
-            <input id="gpa_unweighted" type="number" min="2.0" max="4.0" step="0.01" value="3.50" />
-            <div class="helper">Example: 3.48 (unweighted). If you only know weighted GPA, approximate and refine later.</div>
+            <input id="gpa_uc_csu" type="number" min="2.0" max="4.0" step="0.01" value="3.50" />
+            <div class="helper">Use 10th–11th unweighted GPA if you have it. If unsure, copy your overall GPA for now.
+            </div>
           </div>
 
+          <div>
+            <label for="gpa_overall">
+              Overall GPA (9th–11th)
+              <span class="tipwrap">
+                <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
+                <span class="tipcard">
+                  <span class="tiptext">
+                    Many private and out-of-state colleges consider 9th grade as part of overall GPA. This field is for
+                    that broader GPA.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">Tap anywhere to close.</span>
+                </span>
+              </span>
+            </label>
+            <input id="gpa_overall" type="number" min="2.0" max="4.0" step="0.01" value="3.50" />
+            <div class="helper">Use your transcript overall unweighted GPA (often 9th–11th). Seniors can use 9th–12th if
+              that’s what they have.</div>
+          </div>
+        </div>
+
+        <input id="gpa_unweighted" type="number" class="hidden" value="3.50" />
+
+        <div class="row">
           <div>
             <label for="gpa_trend">
               GPA direction (last 2 semesters)
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-			<span class="tiptext">
-				Improving helps. Flat/declining means fewer realistic upgrades without changing strategy.
-			</span>
-			<span class="tiphint" aria-hidden="true">
-			    Tap anywhere to close.
-			  </span>
-		</span>
+                  <span class="tiptext">
+                    Improving helps. Flat/declining means fewer realistic upgrades without changing strategy.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">Tap anywhere to close.</span>
+                </span>
               </span>
             </label>
             <select id="gpa_trend">
@@ -235,21 +471,24 @@
               <option value="declining">Declining</option>
             </select>
           </div>
+
+          <div></div>
         </div>
+
 
         <label for="grade_concentration">
           Where are the lower grades mostly happening?
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
             <span class="tipcard">
-		<span class="tiptext">
-			This helps the engine detect patterns (e.g., math/science weakness vs broadly spread).
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+              <span class="tiptext">
+                This helps the engine detect patterns (e.g., math/science weakness vs broadly spread).
+              </span>
+              <span class="tiphint" aria-hidden="true">
+                Tap anywhere to close.
+              </span>
 
-	    </span>
+            </span>
           </span>
         </label>
         <select id="grade_concentration">
@@ -266,20 +505,22 @@
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
             <span class="tipcard">
-		<span class="tiptext">
-		This is not a commitment. It helps the tool distinguish “impacted” majors (harder admission) from less impacted ones.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
-	   </span>
+              <span class="tiptext">
+                This is not a commitment. It helps the tool distinguish “impacted” majors (harder admission) from less
+                impacted ones.
+              </span>
+              <span class="tiphint" aria-hidden="true">
+                Tap anywhere to close.
+              </span>
+            </span>
           </span>
         </label>
         <select id="major_bucket">
           <option value="cs_engineering">Computer Science / Engineering</option>
           <option value="business_econ">Business / Economics</option>
           <option value="health_life_science">Health / Life Science (bio, pre-med)</option>
-          <option value="humanities_social_science" selected>Humanities / Social Science (history, poli sci, psych)</option>
+          <option value="humanities_social_science" selected>Humanities / Social Science (history, poli sci, psych)
+          </option>
           <option value="arts_architecture">Arts / Architecture</option>
           <option value="undecided">Undecided</option>
         </select>
@@ -289,24 +530,25 @@
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
             <span class="tipcard">
-	    		<span class="tiptext">
-		This is about realistic planning, not aspiration. Select what you’re willing to apply to.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+              <span class="tiptext">
+                This is about realistic planning, not aspiration. Select what you’re willing to apply to.
+              </span>
+              <span class="tiphint" aria-hidden="true">
+                Tap anywhere to close.
+              </span>
 
-	   </span>
+            </span>
           </span>
         </label>
         <select id="systems_considered" multiple size="5">
           <option value="uc" selected>University of California (UC)</option>
           <option value="csu" selected>California State University (CSU)</option>
-          <option value="private_oos">Private / Out-of-state</option>
+          <option value="private_oos">Private colleges or Out-of-State public universities (OOS)</option>
           <option value="cc_transfer">Community college → transfer</option>
           <option value="undecided">Not sure yet</option>
         </select>
-        <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).</div>
+        <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).
+        </div>
 
         <div class="divider"></div>
 
@@ -320,13 +562,13 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-			<span class="tiptext">
-			Some schools push AP/Honors broadly. This tool defaults to protecting GPA when the risk is high.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>		
-		</span>
+                  <span class="tiptext">
+                    Some schools push AP/Honors broadly. This tool defaults to protecting GPA when the risk is high.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
+                </span>
               </span>
             </label>
             <select id="willing_prioritize_gpa_over_rigor">
@@ -342,14 +584,14 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		Summer academics can help in certain GPA bands if you can realistically earn As in aligned classes.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    Summer academics can help in certain GPA bands if you can realistically earn As in aligned classes.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>
+                </span>
               </span>
             </label>
             <select id="willing_summer_academics">
@@ -367,14 +609,15 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		Activities matter most when GPA is already strong. If time sinks are pulling GPA down, academics usually win.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    Activities matter most when GPA is already strong. If time sinks are pulling GPA down, academics
+                    usually win.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>
+                </span>
               </span>
             </label>
             <select id="willing_reduce_ecs">
@@ -390,21 +633,23 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-			This does not force transfer. It allows the engine to surface CC-based levers when they are the most reliable option.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    This does not force transfer. It allows the engine to surface CC-based levers when they are the most
+                    reliable option.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>
+                </span>
               </span>
             </label>
             <select id="open_to_cc_pathways">
               <option value="true" selected>Yes</option>
               <option value="false">No</option>
             </select>
-            <div class="helper">If you select “No,” the engine will still tell you what is structurally true—but won’t push actions you refuse.</div>
+            <div class="helper">If you select “No,” the engine will still tell you what is structurally true—but won’t
+              push actions you refuse.</div>
           </div>
         </div>
 
@@ -413,17 +658,18 @@
           <span class="tipwrap">
             <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
             <span class="tipcard">
-		<span class="tiptext">
-		If you’ll be traveling 3+ weeks, summer classes become harder to execute even if online.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
-	   </span>
+              <span class="tiptext">
+                If you’ll be traveling 3+ weeks, summer classes become harder to execute even if online.
+              </span>
+              <span class="tiphint" aria-hidden="true">
+                Tap anywhere to close.
+              </span>
+            </span>
           </span>
         </label>
         <input id="summer_travel_weeks" type="number" min="0" max="8" step="1" value="0" />
-        <div class="helper">Optional. This helps determine if summer classes are realistically feasible (3+ travel weeks often makes them hard to execute).</div>
+        <div class="helper">Optional. This helps determine if summer classes are realistically feasible (3+ travel weeks
+          often makes them hard to execute).</div>
 
         <div class="divider"></div>
 
@@ -437,14 +683,14 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		Selecting campuses enables the Access vs Floor-Guarded logic and campus notes.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    Selecting campuses enables the Access vs Floor-Guarded logic and campus notes.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>
+                </span>
               </span>
             </label>
             <select id="campus_targets_uc" multiple size="5">
@@ -458,7 +704,8 @@
               <option value="UCR">UC Riverside (UCR)</option>
               <option value="UCM">UC Merced (UCM)</option>
             </select>
-            <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).</div>
+            <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).
+            </div>
           </div>
 
           <div>
@@ -467,14 +714,15 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		This is about whether a low grade happened early (more recoverable) or late (higher risk). Leave blank if not sure.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    This is about whether a low grade happened early (more recoverable) or late (higher risk). Leave
+                    blank if not sure.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>
+                </span>
               </span>
             </label>
             <select id="academic_anomaly_timing">
@@ -489,14 +737,15 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		This is not about “more clubs.” It’s about whether activities create real signal: leadership, awards, or both.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    This is not about “more clubs.” It’s about whether activities create real signal: leadership,
+                    awards, or both.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>	
+                </span>
               </span>
             </label>
             <select id="ec_leadership_recognition">
@@ -512,14 +761,14 @@
               <span class="tipwrap">
                 <button type="button" class="tipbtn" aria-label="Help">ⓘ</button>
                 <span class="tipcard">
-		<span class="tiptext">
-		These can amplify an already-viable path. They do not rescue a path that’s structurally locked.
-		</span>
-		<span class="tiphint" aria-hidden="true">
-		    Tap anywhere to close.
-		  </span>
+                  <span class="tiptext">
+                    These can amplify an already-viable path. They do not rescue a path that’s structurally locked.
+                  </span>
+                  <span class="tiphint" aria-hidden="true">
+                    Tap anywhere to close.
+                  </span>
 
-		</span>
+                </span>
               </span>
             </label>
             <select id="senior_course_signals" multiple size="3">
@@ -527,7 +776,8 @@
               <option value="capstone_research">Capstone research / thesis-style course</option>
               <option value="advanced_civic_program">Advanced civic program</option>
             </select>
-            <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).</div>
+            <div class="helper">Desktop: hold Ctrl/⌘ to select multiple. Phone: tap items to toggle (varies by device).
+            </div>
           </div>
         </div>
 
@@ -542,16 +792,17 @@
       <section class="card out">
         <h2>Output</h2>
         <div class="muted">Results appear here. This prototype intentionally avoids probability language.</div>
-	<div class="divider"></div>
+        <div class="divider"></div>
 
-	<div class="note-box">
-  	<div class="muted">
-    		<strong>How to read these results:</strong>
-		GPA and timing determine what is structurally possible.
-		Essays and activities can strengthen an application <em>only after a path is viable</em> — they do not rescue paths that are already locked.
-		This tool focuses on where effort still changes outcomes.
-  	</div>
-	</div>	
+        <div class="note-box">
+          <div class="muted">
+            <strong>How to read these results:</strong>
+            GPA and timing determine what is structurally possible.
+            Essays and activities can strengthen an application <em>only after a path is viable</em> — they do not
+            rescue paths that are already locked.
+            This tool focuses on where effort still changes outcomes.
+          </div>
+        </div>
 
         <div class="divider"></div>
 
@@ -561,25 +812,28 @@
         </div>
 
         <h3>🔒 What is locked</h3>
-	<div class="out-help">Paths that are no longer realistic given GPA and timing. This prevents wasted effort, not judging ability or potential.</div>
-	<ul id="locked_list"></ul>
+        <div class="out-help">Paths that are no longer realistic given GPA and timing. This prevents wasted effort, not
+          judging ability or potential.</div>
+        <ul id="locked_list"></ul>
 
 
         <h3>✅ What's still realistic</h3>
-		<div class="out-help">Paths that remain realistically achievable given the current GPA and timeline. These are viable routes — not guarantees.</div>
-	<ul id="viable_list"></ul>
+        <div class="out-help">Paths that remain realistically achievable given the current GPA and timeline. These are
+          viable routes — not guarantees.</div>
+        <ul id="viable_list"></ul>
 
-	<h3>🎯 Where efforts can still make a difference</h3>
-	<div class="out-help">Actions that still change outcomes within viable paths and worth spending time on.</div>
-	<ul id="actions_list"></ul>
+        <h3>🎯 Where efforts can still make a difference</h3>
+        <div class="out-help">Actions that still change outcomes within viable paths and worth spending time on.</div>
+        <ul id="actions_list"></ul>
 
-	<h3>🛑 Stop Doing</h3>
-	<div class="out-help">These actions will not change outcomes at this stage and often increase stress or risk.</div>
-	<ul id="stop_list"></ul>
+        <h3>🛑 Stop Doing</h3>
+        <div class="out-help">These actions will not change outcomes at this stage and often increase stress or risk.
+        </div>
+        <ul id="stop_list"></ul>
 
-	<h3>🧭 What success looks like from here</h3>
-	<div class="out-help">A plain-language definition of “doing well” from this point forward.</div>
-	<div id="success_box" class="muted"></div>
+        <h3>🧭 What success looks like from here</h3>
+        <div class="out-help">A plain-language definition of “doing well” from this point forward.</div>
+        <div id="success_box" class="muted"></div>
 
         <div class="divider"></div>
 
@@ -598,15 +852,19 @@
 
               <h4>Access UC (Example: UC Merced)</h4>
               <p>
-                An <strong>Access UC</strong> is a campus where your student’s GPA band is commonly represented among admitted students.
-                Admission does not depend heavily on major choice at the first-year level. Strategy is clean execution: meet UC requirements,
+                An <strong>Access UC</strong> is a campus where your student’s GPA band is commonly represented among
+                admitted students.
+                Admission does not depend heavily on major choice at the first-year level. Strategy is clean execution:
+                meet UC requirements,
                 submit a strong application, and avoid unnecessary academic risk.
               </p>
 
               <h4>Floor-Guarded UC (Examples: UCR, UCSC, UCSD, UCLA)</h4>
               <p>
-                A <strong>Floor-Guarded UC</strong> applies strong GPA thresholds (even if they aren’t published). Applicants below that floor
-                are admitted in small numbers regardless of activities or essays. Treat these as constrained or long-shot options if GPA is below
+                A <strong>Floor-Guarded UC</strong> applies strong GPA thresholds (even if they aren’t published).
+                Applicants below that floor
+                are admitted in small numbers regardless of activities or essays. Treat these as constrained or
+                long-shot options if GPA is below
                 the historical range, and prioritize reliable pathways alongside them.
               </p>
 
@@ -683,9 +941,9 @@
 
         <div class="divider"></div>
 
-	<h3>📝 Notes</h3>
-	<div class="out-help">Context and campus nuance — explains why certain guidance appears.</div>
-	<ul id="notes_list"></ul>
+        <h3>📝 Notes</h3>
+        <div class="out-help">Context and campus nuance — explains why certain guidance appears.</div>
+        <ul id="notes_list"></ul>
 
         <div class="divider"></div>
 
@@ -718,11 +976,5 @@
 
   <script src="./engine.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-
-

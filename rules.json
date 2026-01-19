@@ -51,91 +51,185 @@
     },
 
     {
-      "id": "B_band_A",
-      "stage": "gpa_band_gate",
-      "when": { "field": "derived.gpa_band", "eq": "A" },
-      "then": {
-        "add_viable": [
-          "Top-tier UC",
-          "Mid-tier UC",
-          "Selective private/OOS",
-          "CSU (fallback)"
-        ]
-      }
-    },
+  "id": "B_band_A_uc_csu",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "derived.gpa_band_uc_csu", "eq": "A" },
+      { "field": "input.systems_considered", "contains": "uc" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Top-tier UC",
+      "Mid-tier UC"
+    ]
+  }
+},
+{
+  "id": "B_band_A_private_oos",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "derived.gpa_band_overall", "eq": "A" },
+      { "field": "input.systems_considered", "contains": "private_oos" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Selective private/OOS"
+    ]
+  }
+},
+{
+  "id": "B_band_A_csu_fallback",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "derived.gpa_band_uc_csu", "eq": "A" },
+      { "field": "input.systems_considered", "contains": "csu" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "CSU (fallback)"
+    ]
+  }
+},
     {
-      "id": "B_band_B",
-      "stage": "gpa_band_gate",
-      "when": { "field": "derived.gpa_band", "eq": "B" },
-      "then": {
-        "add_viable": [
-          "Mid-tier UC",
-          "Lower-tier UC (major dependent)",
-          "CSU",
-          "Limited private/OOS"
-        ],
-        "add_locked": [
-          "Top-tier UC",
-          "Elite private tier"
-        ]
-      }
-    },
+  "id": "B_band_B_uc",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "derived.gpa_band_uc_csu", "eq": "B" },
+      { "field": "input.systems_considered", "contains": "uc" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Mid-tier UC",
+      "Lower-tier UC (major dependent)"
+    ],
+    "add_locked": [
+      "Top-tier UC"
+    ]
+  }
+},
+{
+  "id": "B_band_B_csu",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "derived.gpa_band_uc_csu", "eq": "B" },
+      { "field": "input.systems_considered", "contains": "csu" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "CSU"
+    ]
+  }
+},
+{
+  "id": "B_band_B_private_oos",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "derived.gpa_band_overall", "eq": "B" },
+      { "field": "input.systems_considered", "contains": "private_oos" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Limited private/OOS"
+    ],
+    "add_locked": [
+      "Elite private tier"
+    ]
+  }
+},
+{
+  "id": "B_band_B_private_oos_ultra",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" }
+    ]
+  },
+  "then": {
+    "add_locked": [
+      "Ultra-selective private/OOS (reach-only)"
+    ]
+  }
+},
     {
-      "id": "B_band_C",
-      "stage": "gpa_band_gate",
-      "when": { "field": "derived.gpa_band", "eq": "C" },
-      "then": {
-        "add_viable": [
-          "CSU",
-          "Community college, then transfer to a UC (primary)",
-          "Community college, then transfer to a CSU"
-        ],
-        "add_locked": [
-          "Top-tier UC",
-          "Most mid-tier UCs"
-        ]
-      }
-    },
+  "id": "B_band_C",
+  "stage": "gpa_band_gate",
+  "when": { "field": "derived.gpa_band_uc_csu", "eq": "C" },
+  "then": {
+    "add_viable": [
+      "CSU",
+      "Community college, then transfer to a UC (primary)",
+      "Community college, then transfer to a CSU"
+    ],
+    "add_locked": [
+      "Top-tier UC",
+      "Most mid-tier UCs"
+    ]
+  }
+},
     {
-      "id": "B_band_D_E",
-      "stage": "gpa_band_gate",
-      "when": { "field": "derived.gpa_band", "in": ["D", "E"] },
-      "then": {
-        "add_viable": [
-          "Community college, then transfer to a CSU",
-          "Limited CSU (non-STEM)"
-        ],
-        "add_locked": ["All UCs (direct)","Private/OOS"]
-      }
-    },
+  "id": "B_band_D_E_uc_csu",
+  "stage": "gpa_band_gate",
+  "when": { "field": "derived.gpa_band_uc_csu", "in": ["D", "E"] },
+  "then": {
+    "add_viable": [
+      "Community college, then transfer to a CSU",
+      "Limited CSU (non-STEM)"
+    ],
+    "add_locked": [
+      "All UCs (direct)"
+    ]
+  }
+},
+{
+  "id": "B_band_D_E_private_oos_locked",
+  "stage": "gpa_band_gate",
+  "when": { "field": "derived.gpa_band_overall", "in": ["D", "E"] },
+  "then": {
+    "add_locked": [
+      "Private/OOS"
+    ]
+  }
+},
 
     {
-      "id": "C_impacted_major_floor",
-      "stage": "major_competitiveness_gate",
-      "when": {
-        "all": [
-          { "field": "input.major_bucket", "in": ["cs_engineering", "business_econ", "health_life_science"] },
-          { "field": "derived.gpa_band", "in": ["C", "D", "E"] }
-        ]
-      },
-      "then": {
-        "add_notes": [
-          "Impacted major below GPA floor: pathway repair or realignment required."
-        ]
-      }
-    },
+  "id": "C_impacted_major_floor",
+  "stage": "major_competitiveness_gate",
+  "when": {
+    "all": [
+      { "field": "input.major_bucket", "in": ["cs_engineering", "business_econ", "health_life_science"] },
+      { "field": "derived.gpa_band_uc_csu", "in": ["C", "D", "E"] }
+    ]
+  },
+  "then": {
+    "add_notes": [
+      "Impacted major below the UC/CSU GPA floor (10th–11th): plan for a pathway repair (often CC-transfer) or consider a less impacted major."
+    ]
+  }
+},
     {
       "id": "C_major_realignment_action",
       "stage": "major_competitiveness_gate",
       "when": {
         "all": [
           { "field": "input.major_bucket", "in": ["cs_engineering", "business_econ", "health_life_science"] },
-          { "field": "derived.gpa_band", "in": ["C", "D"] }
+          { "field": "derived.gpa_band_uc_csu", "in": ["C", "D"] }
         ]
       },
       "then": {
         "add_actions": [
-          "Choose: academic repair in core skills OR pathway realignment (CSU / start community college and then transfer)."
+          "Decide between academic repair (improving core grades) or pathway realignment (CSU or starting at a community college and transferring)."
         ]
       }
     },
@@ -167,7 +261,7 @@
       "when": {
         "all": [
           { "field": "state.suppress.cc", "eq": false },
-          { "field": "derived.gpa_band", "in": ["B", "C"] }
+          { "field": "derived.gpa_band_uc_csu", "in": ["B", "C"] }
         ]
       },
       "then": {
@@ -180,7 +274,7 @@
       "when": {
         "all": [
           { "field": "state.suppress.ap", "eq": false },
-          { "field": "derived.gpa_band", "in": ["A", "B"] }
+          { "field": "derived.gpa_band_uc_csu", "in": ["A", "B"] }
         ]
       },
       "then": {
@@ -193,7 +287,7 @@
       "when": {
         "all": [
           { "field": "state.suppress.testing", "eq": false },
-          { "field": "derived.gpa_band", "eq": "A" }
+          { "field": "derived.gpa_band_uc_csu", "eq": "A" }
         ]
       },
       "then": {
@@ -202,13 +296,17 @@
     },
 
     {
-      "id": "F_low_band_suppression",
-      "stage": "suppression_pass",
-      "when": { "field": "derived.gpa_band", "in": ["D", "E"] },
-      "then": {
-        "set_suppress": { "testing": true, "internships": true, "extracurriculars": true }
-      }
-    },
+  "id": "F_low_band_suppression",
+  "stage": "suppression_pass",
+  "when": { "field": "derived.gpa_band_uc_csu", "in": ["D", "E"] },
+  "then": {
+    "set_suppress": {
+      "testing": true,
+      "internships": true,
+      "extracurriculars": true
+    }
+  }
+},
 
     {
       "id": "G_ucb_spike_note",
@@ -232,7 +330,7 @@
     "all": [
       { "field": "input.systems_considered", "contains": "uc" },
       { "field": "input.campus_targets_uc", "contains": "UCM" },
-      { "field": "derived.gpa_band", "eq": "C" }
+      { "field": "derived.gpa_band_uc_csu", "eq": "C" }
     ]
   },
   "then": {
@@ -264,7 +362,7 @@
     "all": [
       { "field": "input.systems_considered", "contains": "uc" },
       { "field": "input.campus_targets_uc", "contains": "UCM" },
-      { "field": "derived.gpa_band", "eq": "D" }
+      { "field": "derived.gpa_band_uc_csu", "eq": "D" }
     ]
   },
   "then": {
@@ -283,7 +381,7 @@
   "when": {
     "all": [
       { "field": "input.campus_targets_uc", "contains": "UCM" },
-      { "field": "derived.gpa_band", "in": ["C","D"] },
+      { "field": "derived.gpa_band_uc_csu", "in": ["C","D"] },
       { "field": "input.major_bucket", "eq": "humanities_social_science" }
     ]
   },
@@ -301,7 +399,7 @@
     "all": [
       { "field": "input.systems_considered", "contains": "uc" },
       { "field": "input.campus_targets_uc", "contains": "UCR" },
-      { "field": "derived.gpa_band", "in": ["C","D","E"] }
+      { "field": "derived.gpa_band_uc_csu", "in": ["C","D","E"] }
     ]
   },
   "then": {
@@ -316,11 +414,107 @@
     "all": [
       { "field": "input.systems_considered", "contains": "uc" },
       { "field": "input.campus_targets_uc", "contains": "UCSC" },
-      { "field": "derived.gpa_band", "in": ["C","D","E"] }
+      { "field": "derived.gpa_band_uc_csu", "in": ["C","D","E"] }
     ]
   },
   "then": {
     "add_notes": ["UCSC is strongly floor-guarded: admits in the 3.25–3.49 range are rare; below ~3.5 it should be treated as a long-shot."]
+  }
+},
+{
+  "id": "P_ultra_selective_always_reach",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" }
+    ]
+  },
+  "then": {
+    "add_locked": [
+      "Ultra-selective private/OOS (reach-only)"
+    ]
+  }
+},
+{
+  "id": "P_private_oos_band_A",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" },
+      { "field": "derived.gpa_band_overall", "eq": "A" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Selective private/OOS (Target/Safety mix)"
+    ]
+  }
+},
+{
+  "id": "P_private_oos_band_B",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" },
+      { "field": "derived.gpa_band_overall", "eq": "B" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Private/OOS (Target/Safety mix)"
+    ]
+  }
+},
+{
+  "id": "P_private_oos_band_C",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" },
+      { "field": "derived.gpa_band_overall", "eq": "C" }
+    ]
+  },
+  "then": {
+    "add_viable": [
+      "Private/OOS (mostly Safety / less selective)"
+    ],
+    "add_notes": [
+      "Private/OOS varies widely. At this GPA range, prioritize schools with clear admit profiles and avoid “prestige stretch” lists."
+    ]
+  }
+},
+{
+  "id": "P_private_oos_band_D_E",
+  "stage": "gpa_band_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" },
+      { "field": "derived.gpa_band_overall", "in": ["D", "E"] }
+    ]
+  },
+  "then": {
+    "add_locked": [
+      "Most private/OOS (direct)"
+    ],
+    "add_notes": [
+      "At this GPA band, private/OOS options exist but are typically limited and require careful matching; Starting Community College and then transfer is usually the most realistic."
+    ]
+  }
+},
+{
+  "id": "P_private_oos_impacted_major_note",
+  "stage": "major_competitiveness_gate",
+  "when": {
+    "all": [
+      { "field": "input.systems_considered", "contains": "private_oos" },
+      { "field": "input.major_bucket", "in": ["cs_engineering", "business_econ", "health_life_science"] },
+      { "field": "derived.gpa_band_overall", "in": ["B", "C"] }
+    ]
+  },
+  "then": {
+    "add_notes": [
+      "For impacted majors (CS/Engineering/Business/Pre-med), Private/OOS selectivity rises sharply; build a wider Safety list even if overall GPA is solid."
+    ]
   }
 }
 
@@ -340,7 +534,12 @@
 
   "floor_guarded_uc": "Some UC campuses apply strong GPA floors. Treat these as constrained or long-shot options while prioritizing pathways that reliably convert effort into outcomes.",
 
-  "cc_transfer_refused": "Your GPA band makes transfer the most reliable lever. If Community College transfer is off the table, define success as: protect GPA, target CSU fit-by-major, and plan a stronger pivot later (including transfer or post-grad options)."
+  "cc_transfer_refused": "Your GPA band makes transfer the most reliable lever. If Community College transfer is off the table, define success as: protect GPA, target CSU fit-by-major, and plan a stronger pivot later (including transfer or post-grad options).",
+
+  "private_oos_high": "For Private/OOS, define success as: build a balanced list (Safety/Target/Reach), execute applications cleanly, and avoid risky last-minute academic changes.",
+"private_oos_mid": "For Private/OOS, define success as: prioritize clear-fit Safety/Target schools, keep the list wide, and execute every deadline and requirement cleanly.",
+"private_oos_low": "For Private/OOS, define success as: target only schools with realistic admit profiles, keep options wide, and treat transfer pathways as the most reliable long-term lever if outcomes don’t convert this cycle."
+
 }
 }
 
