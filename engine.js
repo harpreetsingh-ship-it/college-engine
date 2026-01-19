@@ -196,32 +196,32 @@ function renderOutput(ctx) {
 
   const filterSuppressed = (line) => {
     const s = String(line || "").toLowerCase();
-    
+
     // helper: whole-word match (avoids 'ap' matching 'application')
     const hasWord = (word) => new RegExp(`\\b${word}\\b`, "i").test(s)
 
-  // If a modifier is suppressed, remove action lines that mention it (coarse but safe for v1)
-  if (suppressedKeys.includes("testing") && s.includes("test")) return false;
+    // If a modifier is suppressed, remove action lines that mention it (coarse but safe for v1)
+    if (suppressedKeys.includes("testing") && s.includes("test")) return false;
 
-  // cc: match whole word "cc" OR explicit phrase
-  if (suppressedKeys.includes("cc") && (hasWord("cc") || s.includes("community college"))) return false;
+    // cc: match whole word "cc" OR explicit phrase
+    if (suppressedKeys.includes("cc") && (hasWord("cc") || s.includes("community college"))) return false;
 
-  // ap: match whole word "ap" OR explicit "honors"/"ib" (but NOT "application")
-  if (suppressedKeys.includes("ap") && (hasWord("ap") || s.includes("honors") || hasWord("ib"))) return false;
+    // ap: match whole word "ap" OR explicit "honors"/"ib" (but NOT "application")
+    if (suppressedKeys.includes("ap") && (hasWord("ap") || s.includes("honors") || hasWord("ib"))) return false;
 
-  if (suppressedKeys.includes("internships") && (s.includes("intern") || s.includes("internship"))) return false;
+    if (suppressedKeys.includes("internships") && (s.includes("intern") || s.includes("internship"))) return false;
 
-  // extracurriculars: match "ec" as a word (avoid random 'ec' inside words)
-  if (suppressedKeys.includes("extracurriculars") && (hasWord("ec") || s.includes("club"))) return false;
+    // extracurriculars: match "ec" as a word (avoid random 'ec' inside words)
+    if (suppressedKeys.includes("extracurriculars") && (hasWord("ec") || s.includes("club"))) return false;
 
-  if (suppressedKeys.includes("middle_college") && s.includes("middle college")) return false;
+    if (suppressedKeys.includes("middle_college") && s.includes("middle college")) return false;
 
-  return true;
+    return true;
   };
 
   actions = actions.filter(filterSuppressed);
   //console.log("ACTIONS_AFTER_SUPPRESSION:", actions);
-  
+
   actions = enforceConstraints(actions, c.max_actions || 5);
   const stopC = enforceConstraints(stop, c.max_stop || 5);
 
@@ -241,13 +241,13 @@ function renderOutput(ctx) {
     "No new pathways are closing at this point. What’s listed elsewhere reflects the current planning reality."
   );
 
-renderList(
-  $("viable_list"),
-  viable,
-  "No additional viable routes surfaced from these inputs. If this feels wrong, double-check GPA and grade level."
-);
+  renderList(
+    $("viable_list"),
+    viable,
+    "No additional viable routes surfaced from these inputs. If this feels wrong, double-check GPA and grade level."
+  );
 
-  
+
   renderList(
     $("actions_list"),
     actions,
@@ -274,7 +274,7 @@ function readInputs() {
   const gpa_unweighted = clamp(parseFloat($("gpa_unweighted").value), 2.0, 4.0);
 
 
-    // NEW: GPA inputs (safe fallbacks until UI is wired)
+  // NEW: GPA inputs (safe fallbacks until UI is wired)
   const gpa_overall_el = $("gpa_overall");
   const gpa_uc_csu_el = $("gpa_uc_csu");
 
@@ -285,13 +285,13 @@ function readInputs() {
   const gpa_uc_csu = gpa_uc_csu_el
     ? clamp(parseFloat(gpa_uc_csu_el.value), 2.0, 4.0)
     : gpa_unweighted; // fallback for now
- 
+
 
   const input = {
     grade_level,
     grade_month_bucket: grade_level === 12 ? grade_month_bucket : null,
 
-     // GPA inputs
+    // GPA inputs
     gpa_unweighted,   // legacy (will phase out)
     gpa_overall,      // Private / OOS
     gpa_uc_csu,       // UC / CSU
@@ -316,13 +316,13 @@ function readInputs() {
   };
 
   //console.log("INPUT GPA CHECK", {
-    //gpa_unweighted: input.gpa_unweighted,
-   // gpa_overall: input.gpa_overall,
-   // gpa_uc_csu: input.gpa_uc_csu
- // });
+  //gpa_unweighted: input.gpa_unweighted,
+  // gpa_overall: input.gpa_overall,
+  // gpa_uc_csu: input.gpa_uc_csu
+  // });
 
   return input;
-  
+
 }
 
 function initState() {
@@ -333,7 +333,7 @@ function initState() {
 }
 
 function runEngine(input) {
-    const derived = {
+  const derived = {
     // Two GPA lenses:
     // - overall: includes 9th grade (Private/OOS typically consider full HS record)
     // - uc_csu: excludes 9th grade (UC/CSU GPA is based on 10th–11th for planning purposes)
@@ -440,18 +440,30 @@ function setupTooltipCloseHandlers() {
     return false;
   }
 
-  // pointerdown fires reliably on touch + mouse, before click delays
+  // iOS/Safari fix: ensure ⓘ actually receives focus on tap
   document.addEventListener(
-    "pointerdown",
+    "click",
     (e) => {
-      const active = document.activeElement;
-      const openWrap = closestTipwrap(active);
-      if (!openWrap) return; // nothing open
-      if (openWrap.contains(e.target)) return; // tapped inside -> don't close
-      closeIfTooltipOpen();
+      const btn = e.target.closest(".tipbtn");
+      if (!btn) return;
+      if (typeof btn.focus === "function") btn.focus();
     },
-    { passive: true }
+    true
   );
+
+  function onOutside(e) {
+    const active = document.activeElement;
+    const openWrap = closestTipwrap(active);
+    if (!openWrap) return;
+    if (openWrap.contains(e.target)) return;
+    closeIfTooltipOpen();
+  }
+
+  document.addEventListener("click", onOutside, true);
+  document.addEventListener("touchstart", onOutside, { passive: true, capture: true });
+  document.addEventListener("pointerdown", onOutside, { passive: true, capture: true });
+
+
 
   // Keyboard support: Escape closes an open tooltip
   document.addEventListener("keydown", (e) => {

@@ -85,12 +85,17 @@
 
     /* Allow grid children to shrink (prevents overlap in CSS grid) */
     .row>div {
-      min-width: 0; 
+      min-width: 0;
       position: relative;
     }
 
     /* Make form controls respect container width in grid */
-    input[type="number"], select, textarea { max-width: 100%; box-sizing: border-box; }
+    input[type="number"],
+    select,
+    textarea {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
 
     .tipcard {
       right: auto;
@@ -257,19 +262,23 @@
     }
 
     .tipbtn {
-      all: unset;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #444;
+
       display: inline-block;
       margin-left: 6px;
       font-size: 12px;
       line-height: 1;
-      border: 1px solid #ddd;
       border-radius: 999px;
       padding: 1px 6px;
-      color: #444;
-      background: #fff;
+
       cursor: pointer;
       user-select: none;
     }
+
 
     .tipbtn:focus {
       outline: 2px solid rgba(17, 17, 17, 0.25);
