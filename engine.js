@@ -312,7 +312,10 @@ function readInputs() {
     campus_targets_uc: getMultiSelectValues($("campus_targets_uc")),
     academic_anomaly_timing: $("academic_anomaly_timing").value || null,
     ec_leadership_recognition: $("ec_leadership_recognition").value || null,
-    senior_course_signals: getMultiSelectValues($("senior_course_signals"))
+    senior_course_signals: isSeniorSignalsEligible()
+      ? getMultiSelectValues($("senior_course_signals"))
+      : []
+
   };
 
   //console.log("INPUT GPA CHECK", {
@@ -459,6 +462,9 @@ function setupTooltipCloseHandlers() {
     closeIfTooltipOpen();
   }
 
+
+
+
   document.addEventListener("click", onOutside, true);
   document.addEventListener("touchstart", onOutside, { passive: true, capture: true });
   document.addEventListener("pointerdown", onOutside, { passive: true, capture: true });
@@ -491,6 +497,53 @@ function updateMonthBucketVisibility() {
   wrap.classList.toggle("hidden", grade !== 12);
 }
 
+function isSeniorSignalsEligible() {
+  const grade = $("grade_level")?.value || "";
+  const major = $("major_bucket")?.value || "";
+  return grade === "12" && major === "humanities_social_science";
+}
+
+function clearMultiSelect(el) {
+  if (!el) return;
+  // Works for <select multiple>
+  Array.from(el.options || []).forEach(opt => (opt.selected = false));
+}
+
+function clearSeniorSignalsValue() {
+  const el = $("senior_course_signals");
+  if (!el) return;
+
+  const tag = (el.tagName || "").toLowerCase();
+  if (tag === "input" || tag === "textarea") {
+    el.value = "";
+  } else if (tag === "select") {
+    // Prefer empty option if present; else fall back to first option
+    const hasEmpty = Array.from(el.options || []).some(o => o.value === "");
+    if (hasEmpty) el.value = "";
+    else el.selectedIndex = 0;
+  }
+}
+
+function updateSeniorSignalsVisibility() {
+  const wrap = $("senior_signals_wrap");
+  const sel = $("senior_course_signals");
+  if (!wrap || !sel) return;
+
+  const eligible = isSeniorSignalsEligible();
+
+  if (eligible) {
+    // SHOW: remove the hidden class and clear any forced inline hiding
+    wrap.classList.remove("hidden");
+    wrap.style.display = "";
+  } else {
+    // HIDE: add hidden class, and clear values so no ghost data
+    wrap.classList.add("hidden");
+    clearMultiSelect(sel);
+  }
+}
+
+
+
 async function loadRules() {
   const res = await fetch(CONFIG.RULES_PATH);
   RULESET = await res.json();
@@ -514,9 +567,18 @@ function resetUI() {
 window.addEventListener("DOMContentLoaded", async () => {
   await loadRules();
   updateMonthBucketVisibility();
+  updateSeniorSignalsVisibility();
   setupTooltipCloseHandlers();
 
-  $("grade_level").addEventListener("change", updateMonthBucketVisibility);
+
+  $("grade_level").addEventListener("change", () => {
+    updateMonthBucketVisibility();
+    updateSeniorSignalsVisibility();
+  });
+
+  $("major_bucket").addEventListener("change", updateSeniorSignalsVisibility);
+
+
 
   $("run_btn").addEventListener("click", () => {
     const input = readInputs();
