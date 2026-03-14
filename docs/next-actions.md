@@ -10,7 +10,7 @@ Last updated: March 14, 2026
 - [ ] Mar 31: Nudge LVJUSD + FUSD if no reply
 
 ## Outreach — Pending
-- [ ] Verify email addresses before sends: mpichette@livermoreschools.org, ediolazo@pleasantonusd.net, lventura@dublinusd.org, jwalker@auhsdschools.org
+- [ ] Verify email addresses before sends: ediolazo@pleasantonusd.net, lventura@dublinusd.org, jwalker@auhsdschools.org
 - [ ] Research correct contacts for PUSD, DUSD, AUHSD before sending (confirm still right people)
 - [ ] Handle any Wave 1 replies as they come in (see tracker for reply protocol)
 
