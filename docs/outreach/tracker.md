@@ -19,12 +19,12 @@
 
 ## Wave 1 — Sent
 
-| District | County | Contact | Title | Email | Sent | Nudge Date | Status |
-|---|---|---|---|---|---|---|---|
-| WCCUSD | Contra Costa | Jessica Petrilli | Director, College & Career Pathways | jpetrilli@wccusd.net | Feb 24 | **Mar 10** | Sent |
-| MDUSD | Contra Costa | Dr. Heather Fontanilla | Director, C&C Readiness | fontanillah@mdusd.org | Feb 24 | **Mar 10** | Sent |
-| SLUSD | Alameda | Gary Middleton | Director, Family & Student Support Services | gmiddleton@slusd.us | Feb 26 | **Mar 12** | Sent |
-| SMUHSD | San Mateo | Dr. Sheliah Burnette | Director, Student Services | sburnette@smuhsd.org | Mar 3 | **Mar 17** | Sent |
+| District | Contact | Email | Sent | Nudge | Reply | Status |
+|---|---|---|---|---|---|---|
+| WCCUSD | Jessica Petrilli, Dir C&C Pathways | jpetrilli@wccusd.net | Feb 24 | Mar 10 ✓ | None | Awaiting reply |
+| MDUSD | Dr. Heather Fontanilla, Dir C&C Readiness | fontanillah@mdusd.org | Feb 24 | Mar 10 ✓ | None | Awaiting reply |
+| SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Awaiting reply |
+| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 17 | None | Nudge due Mar 17 |
 
 > **Note — SLUSD:** Gary Middleton's department covers student wellness, foster youth, family engagement, and Title IX — not college/career directly. Nudge email acknowledges his equity mandate and explicitly asks him to route to the right person if needed.
 
