@@ -24,21 +24,27 @@
 | WCCUSD | Jessica Petrilli, Dir C&C Pathways | jpetrilli@wccusd.net | Feb 24 | Mar 10 ✓ | None | Awaiting reply |
 | MDUSD | Dr. Heather Fontanilla, Dir C&C Readiness | fontanillah@mdusd.org | Feb 24 | Mar 10 ✓ | None | Awaiting reply |
 | SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Awaiting reply |
-| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 17 | None | Nudge due Mar 17 |
+| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 16 ✓ | None | Nudge scheduled |
 
 > **Note — SLUSD:** Gary Middleton's department covers student wellness, foster youth, family engagement, and Title IX — not college/career directly. Nudge email acknowledges his equity mandate and explicitly asks him to route to the right person if needed.
 
 ---
 
+## Wave 2 — Scheduled
+
+| District | Contact | Email | Scheduled | Nudge Date | Status |
+|---|---|---|---|---|---|
+| LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org* | Mar 17 | Mar 31 | Scheduled |
+| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Mar 31 | Scheduled |
+
 ## Wave 2 — Planned
 
 | District | Contact | Email | Target Send | Nudge Date | Status |
 |---|---|---|---|---|---|
-| LVJUSD | Paula-Ann Cabading, C&C Specialist | pcabading@livermoreschools.org* | Mar 17 | Mar 31 | Building today |
-| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Mar 31 | Building today |
 | PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net* | Mar 24 | Apr 7 | Planned |
 | DUSD | Dr. Lorianne Ventura, Deputy Supt | lventura@dublinusd.org* | Mar 24 | Apr 7 | Planned |
 | AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org* | Mar 31 | Apr 14 | Planned |
+
 
 > **`*` = email inferred from district naming pattern. Verify before sending.**
 > Fallback for AUHSD: edservices@auhsdschools.org (department inbox)
