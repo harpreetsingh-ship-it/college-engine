@@ -32,13 +32,13 @@
 
 ## Wave 2 — Planned
 
-| District | County | Contact | Title | Email | Target Send | Nudge Date | Status |
-|---|---|---|---|---|---|---|---|
-| LVJUSD | Alameda | Paula-Ann Cabading | C&C Specialist | pcabading@livermoreschools.org* | Mar 17 | Mar 31 | Planned |
-| FUSD | Alameda | Sal Herrera Jr. | Director, Student Support | sherrera@fusdk12.net | Mar 17 | Mar 31 | Planned |
-| PUSD | Alameda | Ed Diolazo | Deputy Supt, Ed Services | ediolazo@pleasantonusd.net* | Mar 24 | Apr 7 | Planned |
-| DUSD | Alameda | Dr. Lorianne Ventura | Deputy Superintendent | lventura@dublinusd.org* | Mar 24 | Apr 7 | Planned |
-| AUHSD | Contra Costa | John Walker | Assoc Supt, Ed Services | jwalker@auhsdschools.org* | Mar 31 | Apr 14 | Planned |
+| District | Contact | Email | Target Send | Nudge Date | Status |
+|---|---|---|---|---|---|
+| LVJUSD | Paula-Ann Cabading, C&C Specialist | pcabading@livermoreschools.org* | Mar 17 | Mar 31 | Building today |
+| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Mar 31 | Building today |
+| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net* | Mar 24 | Apr 7 | Planned |
+| DUSD | Dr. Lorianne Ventura, Deputy Supt | lventura@dublinusd.org* | Mar 24 | Apr 7 | Planned |
+| AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org* | Mar 31 | Apr 14 | Planned |
 
 > **`*` = email inferred from district naming pattern. Verify before sending.**
 > Fallback for AUHSD: edservices@auhsdschools.org (department inbox)
