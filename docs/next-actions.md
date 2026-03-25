@@ -1,18 +1,25 @@
 # Next Actions
 Last updated: March 14, 2026
 
-## Outreach — In Flight
-- [ ] Mar 16: SMUHSD nudge sends (scheduled in Gmail ✓)
-- [ ] Mar 17: LVJUSD email sends (scheduled in Gmail ✓)
-- [ ] Mar 17: FUSD email sends (scheduled in Gmail ✓)
-- [ ] Mar 24: Send PUSD + DUSD emails
-- [ ] Mar 31: Send AUHSD email
-- [ ] Mar 31: Nudge LVJUSD + FUSD if no reply
+## Completed
+- [x] Mar 16: SMUHSD nudge sent ✓
+- [x] Mar 17: LVJUSD email sent ✓
+- [x] Mar 17: FUSD email sent ✓
+- [x] Mar 25: PUSD email scheduled ✓
+- [x] Mar 25: DUSD email scheduled ✓
+- [x] Verified PUSD contact (Ed Diolazo, Deputy Supt) ✓
+- [x] Verified DUSD contact (Matt Campbell, Asst Supt) ✓
 
-## Outreach — Pending
-- [ ] Verify email addresses before sends: ediolazo@pleasantonusd.net, lventura@dublinusd.org, jwalker@auhsdschools.org
-- [ ] Research correct contacts for PUSD, DUSD, AUHSD before sending (confirm still right people)
-- [ ] Handle any Wave 1 replies as they come in (see tracker for reply protocol)
+## Outreach — In Flight
+- [ ] Mar 25: PUSD + DUSD emails send
+- [ ] Mar 31: Send AUHSD email (verify John Walker contact first)
+- [ ] Mar 31: Nudge LVJUSD + FUSD if no reply
+- [ ] Apr 8: Nudge PUSD + DUSD if no reply
+
+## Pending
+- [ ] Tomorrow: Research and verify AUHSD contact (John Walker)
+- [ ] Verify mpichette@livermoreschools.org before nudge date
+- [ ] Handle any Wave 1 replies as they come in
 
 ## Technical — rules.json v0.4
 - [ ] Write output_assembly stage rules (currently no rules defined — known gap)
