@@ -21,10 +21,10 @@ Last updated: April 5, 2026
 
 | District | Contact | Email | Sent | Nudge | Reply | Status |
 |---|---|---|---|---|---|---|
-| WCCUSD | Jessica Petrilli, Dir C&C Pathways | jpetrilli@wccusd.net | Feb 24 | Mar 10 ✓ | None | Awaiting reply |
-| MDUSD | Dr. Heather Fontanilla, Dir C&C Readiness | fontanillah@mdusd.org | Feb 24 | Mar 10 ✓ | None | Awaiting reply |
-| SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Awaiting reply |
-| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 16 ✓ | None | Awaiting reply |
+| WCCUSD | Jessica Petrilli, Dir C&C Pathways | jpetrilli@wccusd.net | Feb 24 | Mar 10 ✓ | None | Nudge sent on Mar 10 |
+| MDUSD | Dr. Heather Fontanilla, Dir C&C Readiness | fontanillah@mdusd.org | Feb 24 | Mar 10 ✓ | None | Nudge sent on Mar 10 |
+| SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Nudge sent on Mar 12 |
+| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 16 ✓ | None | Nudge sent on Mar 16 |
 
 
 ## Wave 2 — Sent
