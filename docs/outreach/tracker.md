@@ -1,6 +1,6 @@
 # Outreach Tracker
 
-**Last updated:** March 24, 2026
+Last updated: April 5, 2026
 **PM:** Claude
 **Owner:** Harpreet Singh
 
@@ -26,39 +26,17 @@
 | SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Awaiting reply |
 | SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 16 ✓ | None | Awaiting reply |
 
-## Wave 2 — Scheduled
 
-| District | Contact | Email | Scheduled | Nudge Date | Status |
-|---|---|---|---|---|---|
-| LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org* | Mar 17 ✓ | Mar 31 | Sent |
-| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 ✓ | Mar 31 | Sent |
-| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 8 | Scheduled |
-| DUSD | Matt Campbell, Asst Supt Ed Services | campbellmatt@dublinusd.org | Mar 25 | Apr 8 | Scheduled |
+## Wave 2 — Sent
 
-## Wave 2 — Planned
+| District | Contact | Email | Sent | Nudge | Reply | Status |
+|---|---|---|---|---|---|---|
+| LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org | Mar 17 | Apr 7 ✓ | None | Nudge scheduled |
+| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Apr 7 ✓ | None | Nudge scheduled |
+| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | None | Nudge scheduled |
+| DUSD | Matt Campbell, Asst Supt Ed Services | campbellmatt@dublinusd.org | Mar 25 | Apr 7 ✓ | None | Nudge scheduled |
+| AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org | Apr 5 | Apr 19 | None | Sent |
 
-| District | Contact | Email | Target Send | Nudge Date | Status |
-|---|---|---|---|---|---|
-| AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org* | Mar 31 | Apr 14 | Contact to verify |
-
-`*` = email inferred from naming pattern — verify before sending.
-> Fallback for AUHSD: edservices@auhsdschools.org (department inbox)
-
----
-
-## Send Calendar
-
-| Date | Action | Districts |
-|---|---|---|
-| Mar 10 | Send nudges | WCCUSD, MDUSD |
-| Mar 12 | Send nudge | SLUSD |
-| Mar 17 | Send nudge + Wave 2 emails | SMUHSD nudge; LVJUSD + FUSD new |
-| Mar 24 | Send Wave 2 emails | PUSD + DUSD new |
-| Mar 31 | Send Wave 2 final | AUHSD new |
-| Apr 7 | Nudge if no reply | PUSD, DUSD |
-| Apr 14 | Nudge if no reply | AUHSD |
-
----
 
 ## Reply Log
 

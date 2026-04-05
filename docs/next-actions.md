@@ -1,5 +1,5 @@
 # Next Actions
-Last updated: March 14, 2026
+Last updated: April 5, 2026
 
 ## Completed
 - [x] Mar 16: SMUHSD nudge sent ✓
@@ -11,15 +11,14 @@ Last updated: March 14, 2026
 - [x] Verified DUSD contact (Matt Campbell, Asst Supt) ✓
 
 ## Outreach — In Flight
-- [ ] Mar 25: PUSD + DUSD emails send
-- [ ] Mar 31: Send AUHSD email (verify John Walker contact first)
-- [ ] Mar 31: Nudge LVJUSD + FUSD if no reply
-- [ ] Apr 8: Nudge PUSD + DUSD if no reply
+- [ ] Apr 7: Nudges send for LVJUSD, FUSD, PUSD, DUSD (scheduled in Gmail ✓)
+- [ ] Apr 19: Nudge AUHSD if no reply
+- [ ] Handle any replies as they come in (see tracker for reply protocol)
 
 ## Pending
-- [ ] Tomorrow: Research and verify AUHSD contact (John Walker)
-- [ ] Verify mpichette@livermoreschools.org before nudge date
-- [ ] Handle any Wave 1 replies as they come in
+- [ ] Wave 1 final close-out: if no reply after Apr 7 nudges for WCCUSD, MDUSD, SLUSD, SMUHSD — send one final note then close those threads
+- [ ] If any district replies — respond within 24 hours, offer 2-3 Zoom slots, do not send tool link yet
+
 
 ## Technical — rules.json v0.4
 - [ ] Write output_assembly stage rules (currently no rules defined — known gap)
@@ -28,7 +27,7 @@ Last updated: March 14, 2026
 - [ ] Review Private/OOS duplication: B_band_B and P_private_oos_band_B both fire for Band B
 
 ## Strategic — Open
-- [ ] Decide when to activate outside employment compliance description with employer
+- [ ] Outside employment form: approved by manager, submitted to HR — disclosure obligation met
 - [ ] Create dedicated project email address (recommendation: after first district reply)
 - [ ] Define Phase 5.1 pilot conversation structure before first Zoom happens
 
