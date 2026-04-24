@@ -34,7 +34,7 @@ Last updated: April 5, 2026
 | LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org | Mar 17 | Apr 7 ✓ | None | Nudge sent on April 7 |
 | FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Apr 7 ✓ | None | Nudge sent on April 7 |
 | PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 12 ✓ | None | Ed responded with marginalized concern, sent response on 4/12, Need to nudge on 4/28|
-| DUSD | Curtis Haar, TK-12 Director (incoming Asst Supt) | haarcurtis@dublinusd.org | Apr 13 ✓ | — | — |Curtis responded "Let me take a look at things" |
+| DUSD | Curtis Haar, TK-12 Director (incoming Asst Supt) | haarcurtis@dublinusd.org | Apr 13 ✓ | — | — |Curtis responded "Let me take a look at things", need to nudge on 04/28 |
 | AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org | Apr 5 | Apr 21 | None | Scheduled |
 
 
