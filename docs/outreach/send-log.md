@@ -39,7 +39,7 @@ Update this every time an action is taken.
 | May 5, 2026 | ~8:15 AM | Follow-up sent | DUSD | haarcurtis@dublinusd.org | Re: Intro: Harpreet Singh -- College Pathway Tool for DUSD | Follow-up to Curtis "let me take a look" |
 | Jun 1, 2026 | — | Reply received | DUSD | haarcurtis@dublinusd.org | — | Curtis redirected to Lorianne Ventura (Curriculum & Instruction) and Whitney Dwyer (Equity, Inclusion & Student Services) |
 | Jun 1, 2026 | — | Email sent | DUSD | venturaloriane@dublinusd.org | College Pathway Planning Tool -- referred by Curtis Haar | Warm outreach via Curtis redirect. Lorianne Ventura, Dir Curriculum & Instruction |
-| Jun 2, 2026 | — | Email scheduled | DUSD | dwyerwhitney@dublinusd.org | College Pathway Planning Tool -- referred by Curtis Haar | Scheduled send. Whitney Dwyer, Dir Equity Inclusion & Student Services. ⚠️ Verify day -- should be Tuesday Jun 3 not Monday Jun 2 |
+| Jun 29, 2026 | — | Email scheduled | DUSD | dwyerwhitney@dublinusd.org | College Pathway Planning Tool -- referred by Curtis Haar | Scheduled send. Whitney Dwyer, Dir Equity Inclusion & Student Services. |
 
 ---
 
@@ -47,8 +47,7 @@ Update this every time an action is taken.
 
 | Due Date | Action | District | Notes |
 |---|---|---|---|
-| Jun 3 | Verify Whitney Dwyer email scheduled for correct day (Tue not Mon) | DUSD | Tuesday rule |
-| Jun 3 | Await replies from Lorianne Ventura + Whitney Dwyer | DUSD | Both contacted via Curtis redirect |
+| Jun 30 | Await replies from Lorianne Ventura + Whitney Dwyer | DUSD | Both contacted via Curtis redirect |
 | TBD | Await reply from John Walker | AUHSD | Nudged Apr 21, no reply yet |
 | TBD | Await reply from Ed Diolazo | PUSD | Follow-up sent May 5, no reply yet |
 | Sep 2026 | Fall re-approach wave | All | See next-actions.md for fall plan |
