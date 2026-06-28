@@ -1,6 +1,6 @@
 # Outreach Tracker
 
-Last updated: May 1, 2026
+Last updated: June 1, 2026
 **PM:** Claude
 **Owner:** Harpreet Singh
 
@@ -17,38 +17,41 @@ Last updated: May 1, 2026
 
 ---
 
-## Wave 1 — Sent
+## Wave 1 — Closed
 
 | District | Contact | Email | Sent | Nudge | Reply | Status |
 |---|---|---|---|---|---|---|
-| WCCUSD | Jessica Petrilli, Dir C&C Pathways | jpetrilli@wccusd.net | Feb 24 | Mar 10 ✓ | None | Close-out scheduled May 4 |
-| MDUSD | Dr. Heather Fontanilla, Dir C&C Readiness | fontanillah@mdusd.org | Feb 24 | Mar 10 ✓ | None | Close-out scheduled May 4 |
-| SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Close-out scheduled May 4 |
-| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 16 ✓ | None | Close-out scheduled May 4 |
+| WCCUSD | Jessica Petrilli, Dir C&C Pathways | jpetrilli@wccusd.net | Feb 24 | Mar 10 ✓ | None | Close-out sent May 4 |
+| MDUSD | Dr. Heather Fontanilla, Dir C&C Readiness | fontanillah@mdusd.org | Feb 24 | Mar 10 ✓ | None | Close-out sent May 4 |
+| SLUSD | Gary Middleton, Dir Family & Student Support | gmiddleton@slusd.us | Feb 26 | Mar 12 ✓ | None | Close-out sent May 4 |
+| SMUHSD | Dr. Sheliah Burnette, Dir Student Services | sburnette@smuhsd.org | Mar 3 | Mar 16 ✓ | None | Close-out sent May 4 |
 
-## Wave 2 — Sent
+## Wave 2 — Active
 
 | District | Contact | Email | Sent | Nudge | Reply | Status |
 |---|---|---|---|---|---|---|
-| LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org | Mar 17 | Apr 7 ✓ | None | Close-out scheduled May 4 |
-| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Apr 7 ✓ | None | Close-out scheduled May 4 |
-| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | Apr 12 ✓ | Replied with equity concern. Response sent Apr 12. Follow-up scheduled May 5 |
-| DUSD | Curtis Haar, TK-12 Director (incoming Asst Supt) | haarcurtis@dublinusd.org | Apr 13 ✓ | — | Apr 13 ✓ | Replied "let me take a look". Follow-up scheduled May 5 |
+| LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org | Mar 17 | Apr 7 ✓ | None | Close-out sent May 4 |
+| FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Apr 7 ✓ | None | Close-out sent May 4 |
+| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | Apr 12 ✓ | Replied with equity concern. Response sent Apr 12. Follow-up sent May 5. Awaiting reply |
+| DUSD | Curtis Haar, TK-12 Director (incoming Asst Supt) | haarcurtis@dublinusd.org | Apr 13 ✓ | — | Apr 13 ✓ | Redirected to Lorianne Ventura + Whitney Dwyer Jun 1. Both contacted |
+| DUSD | Lorianne Ventura, Dir Curriculum & Instruction | venturaloriane@dublinusd.org | Jun 1 ✓ | — | — | Sent via Curtis redirect. Awaiting reply |
+| DUSD | Whitney Dwyer, Dir Equity Inclusion & Student Services | dwyerwhitney@dublinusd.org | Jun 3 | — | — | Scheduled. ⚠️ Verify Tuesday not Monday |
 | AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org | Apr 5 | Apr 21 ✓ | None | Awaiting reply |
 
 ## Warm Contact Paths
 
 | Contact | Role | District | Channel | Status |
 |---|---|---|---|---|
-| Zoe Gill | College & Career Specialist, AVHS | PUSD | Wife's WhatsApp | Intro sent, awaiting response |
+| Zoe Gill | College & Career Specialist, AVHS | PUSD | Wife's WhatsApp | ⚠️ Unconfirmed -- verify with wife whether intro was sent |
 | Ashmeet Sahni | STEAM Coordinator | DUSD | Harpreet's WhatsApp | Intro made to Curtis Haar Apr 13 ✓ |
 
 ## Reply Log
 
 | Date | District | Contact | Reply Type | Notes | Next Action |
 |---|---|---|---|---|---|
-| Apr 12 | PUSD | Ed Diolazo | Lukewarm | Raised equity/marginalized student concern | Follow-up May 5 |
-| Apr 13 | DUSD | Curtis Haar | Lukewarm | "Let me take a look and get back to you" | Follow-up May 5 |
+| Apr 12 | PUSD | Ed Diolazo | Lukewarm | Raised equity/marginalized student concern | Follow-up sent May 5, awaiting reply |
+| Apr 13 | DUSD | Curtis Haar | Lukewarm | "Let me take a look and get back to you" | Redirected to Ventura + Dwyer Jun 1 |
+| Jun 28 | DUSD | Curtis Haar | Redirect | Forwarded to Lorianne Ventura + Whitney Dwyer | Contacted both Jun 29 |
 
 ---
 
