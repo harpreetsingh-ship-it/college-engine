@@ -45,6 +45,14 @@ Last updated: September 13, 2026
 | SJUSD | Michelle Reghitto, Dir Student Services | studentservices@sjusd.org | Sep 16 | Sep 30 | Scheduled -- equity framing |
 | OUSD | Elizabeth Paniagua, Office of Linked Learning | elizabeth.paniagua@ousd.org | Sep 16 | Sep 30 | Scheduled -- equity framing |
 
+
+## Wave 4 — Scheduled
+
+| District | Contact | Email | Scheduled | Nudge Date | Status |
+|---|---|---|---|---|---|
+| SRVUSD | Hong Nguyen EdD, Dir Student Services & Educational Equity | hnguyen2@srvusd.net | Sep 22 | Oct 6 | Scheduled |
+| MUSD | Mary Jude Doerpinghaus, Exec Dir Inclusive Services | mdoerpinghaus@musd.org | Sep 22 | Oct 6 | Scheduled |
+
 ## Warm Contact Paths
 
 | Contact | Role | District | Channel | Status |
