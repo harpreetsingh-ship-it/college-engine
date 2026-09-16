@@ -64,7 +64,7 @@ Last updated: September 13, 2026
 
 | Date | District | Contact | Reply Type | Notes | Next Action |
 |---|---|---|---|---|---|
-| Apr 12 | PUSD | Ed Diolazo | Lukewarm | Raised equity/marginalized student concern | Re-intro sent Sep 15 |
+| Apr 12 | PUSD | Ed Diolazo | Lukewarm | Raised equity/marginalized student concern | Re-intro sent Sep 15, He referred to Sarah Knox. If no response by 9/22 - send her an email |
 | Apr 13 | DUSD | Curtis Haar | Lukewarm | "Let me take a look" | Redirected Jun 1, passed Jun 1 |
 | Jun 1 | DUSD | Lorianne Ventura | Lukewarm | Offered summer meeting | Bowed out gracefully |
 | Jun 1 | DUSD | Whitney Dwyer | Positive | Sent Aug 20 calendar invite | Bowed out gracefully per Curtis |
