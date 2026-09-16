@@ -31,7 +31,7 @@ Last updated: September 13, 2026
 |---|---|---|---|---|---|---|
 | LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org | Mar 17 | Apr 7 ✓ | None | Close-out sent May 4 |
 | FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Apr 7 ✓ | None | Close-out sent May 4 |
-| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | Apr 12 ✓ | Re-intro sent Sep 15. Awaiting reply |
+| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | Apr 12 ✓ | Re-intro sent Sep 15. ⚠️ Awaiting response from Sarah Knox till 9/22 - then send a reminder |
 | DUSD | Curtis Haar, TK-12 Director | haarcurtis@dublinusd.org | Apr 13 ✓ | — | Jun 1 ✓ | Closed -- redirected to Ventura + Dwyer, then passed |
 | DUSD | Lorianne Ventura, Dir Curriculum & Instruction | venturaloriane@dublinusd.org | Jun 1 ✓ | — | Jun ✓ | Closed gracefully -- deferred to Curtis decision |
 | DUSD | Whitney Dwyer, Dir Equity Inclusion & Student Services | dwyerwhitney@dublinusd.org | Jun 3 ✓ | — | Aug ✓ | Meeting proposed Aug 20 -- bowed out gracefully per Curtis decision |
