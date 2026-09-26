@@ -1,6 +1,6 @@
 # Outreach Tracker
 
-Last updated: September 13, 2026
+Last updated: September 22, 2026
 **PM:** Claude
 **Owner:** Harpreet Singh
 
@@ -31,27 +31,27 @@ Last updated: September 13, 2026
 |---|---|---|---|---|---|---|
 | LVJUSD | Michelle Pichette, Interim Dir Ed Services | mpichette@livermoreschools.org | Mar 17 | Apr 7 ✓ | None | Close-out sent May 4 |
 | FUSD | Sal Herrera Jr., Dir Student Support | sherrera@fusdk12.net | Mar 17 | Apr 7 ✓ | None | Close-out sent May 4 |
-| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | Apr 12 ✓ | Re-intro sent Sep 15. ⚠️ Awaiting response from Sarah Knox till 9/22 - then send a reminder |
+| PUSD | Ed Diolazo, Deputy Supt Ed Services | ediolazo@pleasantonusd.net | Mar 25 | Apr 7 ✓ | Apr 12 ✓ | Re-intro sent Sep 15. Referred to Sarah Knox -- email scheduled Sep 29 |
+| PUSD | Sarah Knox, Dir Secondary Education | sknox@pleasantonusd.net | Sep 29 | Oct 13 | — | Scheduled -- referred by Ed Diolazo |
 | DUSD | Curtis Haar, TK-12 Director | haarcurtis@dublinusd.org | Apr 13 ✓ | — | Jun 1 ✓ | Closed -- redirected to Ventura + Dwyer, then passed |
 | DUSD | Lorianne Ventura, Dir Curriculum & Instruction | venturaloriane@dublinusd.org | Jun 1 ✓ | — | Jun ✓ | Closed gracefully -- deferred to Curtis decision |
-| DUSD | Whitney Dwyer, Dir Equity Inclusion & Student Services | dwyerwhitney@dublinusd.org | Jun 3 ✓ | — | Aug ✓ | Meeting proposed Aug 20 -- bowed out gracefully per Curtis decision |
+| DUSD | Whitney Dwyer, Dir Equity Inclusion & Student Services | dwyerwhitney@dublinusd.org | Jun 3 ✓ | — | Aug ✓ | Bowed out gracefully per Curtis decision |
 | AUHSD | John Walker, Assoc Supt Ed Services | jwalker@auhsdschools.org | Apr 5 | Apr 21 ✓ | None | Awaiting reply |
 
-## Wave 3 — Scheduled
+## Wave 3 — Sent
 
-| District | Contact | Email | Scheduled | Nudge Date | Status |
-|---|---|---|---|---|---|
-| HUSD | Veronica Ortiz, College & Career Coordinator | vortiz@husd.k12.ca.us | Sep 16 | Sep 30 | Scheduled -- practitioner framing |
-| SJUSD | Michelle Reghitto, Dir Student Services | studentservices@sjusd.org | Sep 16 | Sep 30 | Scheduled -- equity framing |
-| OUSD | Elizabeth Paniagua, Office of Linked Learning | elizabeth.paniagua@ousd.org | Sep 16 | Sep 30 | Scheduled -- equity framing |
+| District | Contact | Email | Sent | Nudge | Reply | Status |
+|---|---|---|---|---|---|---|
+| HUSD | Veronica Ortiz, College & Career Coordinator | vortiz@husd.k12.ca.us | Sep 16 | Sep 30 ✓ | None | Nudge scheduled Sep 30 |
+| SJUSD | Michelle Reghitto, Dir Student Services | studentservices@sjusd.org | Sep 16 | Sep 30 ✓ | None | Nudge scheduled Sep 30 |
+| OUSD | Elizabeth Paniagua, Office of Linked Learning | elizabeth.paniagua@ousd.org | Sep 16 | Sep 30 ✓ | None | Nudge scheduled Sep 30 |
 
+## Wave 4 — Mixed
 
-## Wave 4 — Scheduled
-
-| District | Contact | Email | Scheduled | Nudge Date | Status |
-|---|---|---|---|---|---|
-| SRVUSD | Hong Nguyen EdD, Dir Student Services & Educational Equity | hnguyen2@srvusd.net | Sep 22 | Oct 6 | Scheduled |
-| MUSD | Mary Jude Doerpinghaus, Exec Dir Inclusive Services | mdoerpinghaus@musd.org | Sep 22 | Oct 6 | Scheduled |
+| District | Contact | Email | Sent | Nudge | Reply | Status |
+|---|---|---|---|---|---|---|
+| SRVUSD | Hong Nguyen EdD, Dir Student Services & Educational Equity | hnguyen2@srvusd.net | Sep 22 | — | Sep 22 ✓ | Closed -- new platform recently adopted, revisit 2027 |
+| MUSD | Michele Sherer, Dir Special Education & Student Services | msherer@musd.org | Sep 29 | Oct 13 | — | Scheduled -- original contact bounced |
 
 ## Warm Contact Paths
 
@@ -64,10 +64,11 @@ Last updated: September 13, 2026
 
 | Date | District | Contact | Reply Type | Notes | Next Action |
 |---|---|---|---|---|---|
-| Apr 12 | PUSD | Ed Diolazo | Lukewarm | Raised equity/marginalized student concern | Re-intro sent Sep 15, He referred to Sarah Knox. If no response by 9/22 - send her an email |
+| Apr 12 | PUSD | Ed Diolazo | Lukewarm | Raised equity/marginalized student concern | Re-intro sent Sep 15, referred to Sarah Knox -- email Sep 29 |
 | Apr 13 | DUSD | Curtis Haar | Lukewarm | "Let me take a look" | Redirected Jun 1, passed Jun 1 |
 | Jun 1 | DUSD | Lorianne Ventura | Lukewarm | Offered summer meeting | Bowed out gracefully |
 | Jun 1 | DUSD | Whitney Dwyer | Positive | Sent Aug 20 calendar invite | Bowed out gracefully per Curtis |
+| Sep 22 | SRVUSD | Hong Nguyen | Closed | New platform recently adopted | Revisit 2027 |
 
 ---
 
