@@ -53,6 +53,12 @@ Last updated: September 22, 2026
 | SRVUSD | Hong Nguyen EdD, Dir Student Services & Educational Equity | hnguyen2@srvusd.net | Sep 22 | — | Sep 22 ✓ | Closed -- new platform recently adopted, revisit 2027 |
 | MUSD | Michele Sherer, Dir Special Education & Student Services | msherer@musd.org | Sep 29 | Oct 13 | — | Scheduled -- original contact bounced |
 
+## Wave 5 — Scheduled
+
+| District | Contact | Email | Scheduled | Nudge Date | Status |
+|---|---|---|---|---|---|
+| KHSD | Dustin Green, Dir Educational Services | dustin_green@kernhigh.org | Sep 30 | Oct 14 | Scheduled -- dual enrollment angle |
+
 ## Warm Contact Paths
 
 | Contact | Role | District | Channel | Status |
