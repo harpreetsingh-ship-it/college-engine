@@ -59,6 +59,14 @@ Last updated: September 22, 2026
 |---|---|---|---|---|---|
 | KHSD | Dustin Green, Dir Educational Services | dustin_green@kernhigh.org | Sep 30 | Oct 14 | Scheduled -- dual enrollment angle |
 
+## Wave 6 — Scheduled
+
+| District | Contact | Email | Scheduled | Nudge Date | Status |
+|---|---|---|---|---|---|
+| EGUSD | Sue Hubbard, Dir College & Career Connections | shubbard@egusd.net | Sep 29 | Oct 13 | Scheduled |
+| NVUSD | Mario Landeros, Dir College & Career Readiness | mario_landeros@nvusd.org | Sep 29 | Oct 13 | Scheduled |
+| PVUSD | Lisa Aguerria, Assoc Supt Secondary Education | lisa_aguerria@pvusd.net | Sep 29 | Oct 13 | Scheduled |
+
 ## Warm Contact Paths
 
 | Contact | Role | District | Channel | Status |
